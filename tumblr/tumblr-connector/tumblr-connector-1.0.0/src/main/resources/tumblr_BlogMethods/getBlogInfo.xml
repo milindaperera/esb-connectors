@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template name="getBlogInfo" xmlns="http://ws.apache.org/ns/synapse">
+
+    <parameter name="consumerKey"/>
+	<parameter name="baseHostUrl"/>
+    
+	<sequence>
+	
+		<property name="tumblr.oauth.consumerKey" expression="$func:oauthConsumerKey" scope="default" type="STRING"/>
+        <property name="uri.var.baseHostUrl" expression="$func:baseHostUrl" scope="default" type="STRING"/>
+        
+        <log level="custom">
+        	<property name="OAUTH_CONSUMER_KEY" expression="get-property('tumblr.oauth.consumerKey')"/>
+        	<property name="BASE_HOST_URL" expression="get-property('uri.var.baseHostUrl')"/>           
+        </log>   
+                
+        <!-- <property name="messageType" value="application/x-www-form-urlencoded" scope="axis2" /> -->
+        
+        <!-- Create tumblr rest endpoint uri api key param -->
+        <property name="uri.var.apiKey" expression="get-property('tumblr.oauth.consumerKey')"/>
+        
+        <call>
+	        <endpoint>
+	        	<http method="GET" uri-template="{uri.var.mainUrl}/{uri.var.baseHostUrl}/info?api_key={uri.var.apiKey}"/>
+	        </endpoint>
+	    </call>
+        
+             
+	</sequence>
+</template>

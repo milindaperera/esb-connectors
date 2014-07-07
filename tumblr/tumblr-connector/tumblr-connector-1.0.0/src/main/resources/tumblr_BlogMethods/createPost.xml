@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template name="createPost" xmlns="http://ws.apache.org/ns/synapse">
+
+	<!-- OAuth 1.0a authentication information -->
+	<parameter name="oauthConsumerKey"/>
+    <parameter name="oauthConsumerSecret"/>
+    <parameter name="oauthAccessToken"/>
+    <parameter name="oauthAccessTokenSecret"/>
+    
+    <!-- Method information -->  
+    <!--       common parameters       -->
+    <parameter name="baseHostUrl"/>
+    
+    <parameter name="postType"/>
+    <parameter name="postState"/>
+    <parameter name="postTags"/>
+    <parameter name="postTweet"/>
+    <parameter name="postFormat"/>
+    <parameter name="postSlug"/>
+    <!--       text post specific parameters       -->
+    <parameter name="postTitle"/>
+    <parameter name="postBody"/>
+    <!--       photo post specific parameters       -->
+    <parameter name="postPhotoCaption"/>
+    <parameter name="postPhotoClickLink"/>
+    <parameter name="postSource"/>
+    <!--       quote post specific parameters       -->
+    <parameter name="postQuote"/>
+    <parameter name="postQuoteSource"/>
+    <!--       link post specific parameters       -->
+    <parameter name="postLinkTitle"/>
+    <parameter name="postUrl"/>
+    <parameter name="postDescription"/>
+    <!--       chat post specific parameters       -->
+    <parameter name="postChatTitle"/>
+    <parameter name="postConversation"/>
+    <!--       audio post specific parameters       -->
+    <parameter name="postAudioCaption"/>
+    <parameter name="postExternalUrl"/>
+    <!--       video post specific parameters       -->
+    <parameter name="postVideoCaption"/>
+    <parameter name="postEmbed"/>
+    
+	<sequence>
+	
+		<property name="tumblr.oauth.consumerKey" expression="$func:oauthConsumerKey" scope="default" type="STRING"/>
+        <property name="tumblr.oauth.consumerSecret" expression="$func:oauthConsumerSecret" scope="default" type="STRING"/>
+        <property name="tumblr.oauth.accessToken" expression="$func:oauthAccessToken" scope="default" type="STRING"/>
+        <property name="tumblr.oauth.accessSecret" expression="$func:oauthAccessTokenSecret" scope="default" type="STRING"/>
+        
+        <property name="uri.var.baseHostUrl" expression="$func:baseHostUrl" scope="default" type="STRING"/>
+        
+        <property name="tumblr.param.type" expression="$func:postType" scope="default" type="STRING"/>
+        <property name="tumblr.param.state" expression="$func:postState" scope="default" type="STRING"/>
+        <property name="tumblr.param.tags" expression="$func:postTags" scope="default" type="STRING"/>
+        <property name="tumblr.param.tweet" expression="$func:postTweet" scope="default" type="STRING"/>
+        <property name="tumblr.param.format" expression="$func:postFormat" scope="default" type="STRING"/>
+        <property name="tumblr.param.slug" expression="$func:postSlug" scope="default" type="STRING"/>
+        
+        
+        
+        
+        <property name="uri.var.mainUrl" value="http://api.tumblr.com/v2/blog"/>
+        
+        <!-- TEMPORARY -->
+        <log level="custom">
+        	<property name="OAUTH_CONSUMER_KEY" expression="get-property('tumblr.oauth.consumerKey')"/>
+        	<property name="OAUTH_CONSUMER_SECRET" expression="get-property('tumblr.oauth.consumerSecret')"/>
+            <property name="OAUTH_ACCESS_TOKEN" expression="get-property('tumblr.oauth.accessToken')"/>
+            <property name="OAUTH_ACCESS_SECRET" expression="get-property('tumblr.oauth.accessSecret')"/> 
+            <property name="BASE_HOST_URL" expression="get-property('uri.var.baseHostUrl')"/>    
+            <property name="POST_BODY" expression="get-property('tumblr.param.body')"/>       
+        </log>  
+        
+        
+        
+        
+        <!-- Create POST url -->
+        <property name="tumblr.url.createPost" expression="fn:concat('http://api.tumblr.com/v2/blog/', get-property('uri.var.baseHostUrl'), '/post')" />
+        
+        <payloadFactory media-type="xml">
+	       <format>
+	          <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+	             <soapenv:Header/>
+	             <soapenv:Body/>
+	          </soapenv:Envelope>
+	       </format>
+	       <args/>
+	    </payloadFactory>
+                
+        <!-- TODO : CHECK MESSAGE TYPE SETTING -->
+        <property name="messageType" value="application/json" scope="axis2"/>
+        
+        <!-- switch to categories based on the type of the post -->
+		<switch source="get-property('tumblr.param.type')">
+			<case regex="text">
+				<!-- create Text post  -->
+				<property name="tumblr.param.title" expression="$func:postTitle" scope="default" type="STRING"/>
+        		<property name="tumblr.param.body" expression="$func:postBody" scope="default" type="STRING"/>
+				<!-- <class name="org.wso2.carbon.connector.tumblr.TumblrCreateTextPost"/> -->
+			</case>
+			<case regex="photo">
+				<property name="tumblr.param.caption" expression="$func:postPhotoCaption" scope="default" type="STRING"/>
+				<property name="tumblr.param.clickLink" expression="$func:postPhotoClickLink" scope="default" type="STRING"/>
+				<property name="tumblr.param.source" expression="$func:postSource" scope="default" type="STRING"/>
+				<!-- <class name="org.wso2.carbon.connector.tumblr.TumblrCreatePhotoPost"/> -->
+			</case>
+			<case regex="quote">
+				<property name="tumblr.param.quote" expression="$func:postQuote" scope="default" type="STRING"/>
+        		<property name="tumblr.param.source" expression="$func:postQuoteSource" scope="default" type="STRING"/>
+        		<!-- <class name="org.wso2.carbon.connector.tumblr.TumblrCreateQuotePost"/> -->
+			</case>
+			<case regex="link">
+				<property name="tumblr.param.title" expression="$func:postLinkTitle" scope="default" type="STRING"/>
+				<property name="tumblr.param.source" expression="$func:postUrl" scope="default" type="STRING"/>
+				<property name="tumblr.param.description" expression="$func:postDescription" scope="default" type="STRING"/>
+				<!-- <class name="org.wso2.carbon.connector.tumblr.TumblrCreateLinkPost"/> -->
+			</case>
+			<case regex="chat">
+				<property name="tumblr.param.title" expression="$func:postChatTitle" scope="default" type="STRING"/>
+				<property name="tumblr.param.conversation" expression="$func:postConversation" scope="default" type="STRING"/>
+				<!-- <class name="org.wso2.carbon.connector.tumblr.TumblrCreateChatPost"/> -->
+			</case>
+			<case regex="audio">
+				<property name="tumblr.param.caption" expression="$func:postAudioCaption" scope="default" type="STRING"/>
+				<property name="tumblr.param.source" expression="$func:postExternalUrl" scope="default" type="STRING"/>
+				<!-- <class name="org.wso2.carbon.connector.tumblr.TumblrCreateAudioPost"/> -->
+			</case>
+			<case regex="video">
+				<property name="tumblr.param.caption" expression="$func:postVideoCaption" scope="default" type="STRING"/>
+				<property name="tumblr.param.embed" expression="$func:postEmbed" scope="default" type="STRING"/>
+				
+			</case>
+			<default>
+				<!-- TODO   :   HANDLE DEFAULT OTHERWISE WILL CREATE ERROR  -->
+			</default>
+		</switch>        
+        
+        <class name="org.wso2.carbon.connector.tumblr.TumblrCreatePost"/>  
+        
+        
+        
+        
+            
+	</sequence>
+</template>

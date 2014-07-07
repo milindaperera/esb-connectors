@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template xmlns="http://ws.apache.org/ns/synapse" name="getDraftedPosts">
+	<!-- OAuth 1.0a authentication information -->
+	<parameter name="oauthConsumerKey"/>
+    <parameter name="oauthConsumerSecret"/>
+    <parameter name="oauthAccessToken"/>
+    <parameter name="oauthAccessTokenSecret"/>
+    
+    <!-- Method information -->
+    <parameter name="baseHostUrl"/>
+    <parameter name="beforeId"/>
+    <parameter name="filter"/>
+    
+    <sequence>
+        <property name="uri.var.baseHostUrl" expression="$func:baseHostUrl"/>
+        <property name="tumblr.param.beforeId" expression="$func:beforeId"/>
+        <property name="tumblr.param.filter" expression="$func:filter"/>
+        
+        <log level="custom">
+        	<property name="OAUTH_CONSUMER_KEY" expression="get-property('tumblr.oauth.consumerKey')"/>
+        	<property name="OAUTH_CONSUMER_SECRET" expression="get-property('tumblr.oauth.consumerSecret')"/>
+            <property name="OAUTH_ACCESS_TOKEN" expression="get-property('tumblr.oauth.accessToken')"/>
+            <property name="OAUTH_ACCESS_SECRET" expression="get-property('tumblr.oauth.accessSecret')"/>
+            
+            <property name="BASE_HOST_URL" expression="get-property('uri.var.baseHostUrl')"/>
+            <property name="BEFORE_ID" expression="get-property('tumblr.param.beforeId')"/>
+            <property name="FILTER" expression="get-property('tumblr.param.filter')"/>
+            
+        </log>
+
+        <!-- Create GET url -->
+        <property name="tumblr.url.drafts" expression="fn:concat('http://api.tumblr.com/v2/blog/', get-property('uri.var.baseHostUrl'), '/posts/draft')" />
+        										
+        <log level="custom">
+        	<property name="BASE_URL" expression="get-property('tumblr.url.drafts')"/>
+        </log>
+        
+        
+        <class name="org.wso2.carbon.connector.tumblr.TumblrGetDrafts"/>
+        
+        <payloadFactory media-type="json">
+	       <format>
+	          $1
+	       </format>
+	       <args>
+	       		<arg expression="get-property('tumblr.response')"/>
+	       </args>
+	    </payloadFactory>
+        <property name="messageType" value="application/json" scope="axis2"/>
+        
+    </sequence>
+</template>

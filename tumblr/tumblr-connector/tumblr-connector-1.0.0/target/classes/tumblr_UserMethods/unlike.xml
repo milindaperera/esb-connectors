@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template name="unlike" xmlns="http://ws.apache.org/ns/synapse">
+	
+	<!-- OAuth 1.0a authentication information -->
+	<parameter name="oauthConsumerKey"/>
+    <parameter name="oauthConsumerSecret"/>
+    <parameter name="oauthAccessToken"/>
+    <parameter name="oauthAccessTokenSecret"/>
+    
+    <!-- Method information -->
+    <parameter name="postId"/>
+    <parameter name="reblogKey"/>
+   
+    
+	<sequence>
+
+        <property name="tumblr.param.id" expression="$func:postId" scope="default" type="STRING"/>
+        <property name="tumblr.param.reblogId" expression="$func:reblogKey" scope="default" type="STRING"/>
+        
+        <log level="custom">
+        	<property name="OAUTH_CONSUMER_KEY" expression="get-property('tumblr.oauth.consumerKey')"/>
+        	<property name="OAUTH_CONSUMER_SECRET" expression="get-property('tumblr.oauth.consumerSecret')"/>
+            <property name="OAUTH_ACCESS_TOKEN" expression="get-property('tumblr.oauth.accessToken')"/>
+            <property name="OAUTH_ACCESS_SECRET" expression="get-property('tumblr.oauth.accessSecret')"/>
+        </log>
+        
+        <payloadFactory media-type="xml">
+	       <format>
+	          <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+	             <soapenv:Header/>
+	             <soapenv:Body/>
+	          </soapenv:Envelope>
+	       </format>
+	       <args/>
+	    </payloadFactory>
+        
+        <property name="messageType" value="application/json" scope="axis2"/>
+        
+        <!-- Create POST url -->
+        <property name="tumblr.url.unlike" value="http://api.tumblr.com/v2/user/unlike" />
+                       
+       	<class name="org.wso2.carbon.connector.tumblr.TumblrUnlike"/>
+               
+	</sequence>
+</template>

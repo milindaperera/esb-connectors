@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template name="getAvatar" xmlns="http://ws.apache.org/ns/synapse">
+
+	<parameter name="baseHostUrl"/>
+	<parameter name="size"/>
+    
+	<sequence>
+	
+        <property name="uri.var.baseHostUrl" expression="$func:baseHostUrl" scope="default" type="STRING"/>
+        <property name="uri.var.size" expression="$func:baseHostUrl" scope="default" type="STRING"/>
+        
+        <log level="custom">
+        	<property name="OAUTH_CONSUMER_KEY" expression="get-property('tumblr.oauth.consumerKey')"/>
+        	<property name="BASE_HOST_URL" expression="get-property('uri.var.baseHostUrl')"/>           
+        </log>   
+        
+        <property name="messageType" value="application/json" scope="axis2" />
+        <property name="ContentType" value="application/json" scope="axis2"/>
+        
+        <!-- <property name="Accept" value="application/json" scope="transport"/> -->
+        
+        <filter xpath="get-property('uri.var.size') = '' or  (not(string(get-property('uri.var.size'))))">
+        	<then>
+        		<property name="uri.var.size" value="" scope="default" type="STRING"/>
+        	</then>
+        	<else>
+        		<property name="uri.var.size" expression="fn:concat('/', get-property('uri.var.size'))" 
+        																scope="default" type="STRING"/>
+        	</else>
+        </filter>
+        
+        <call>
+	        <endpoint>
+	        	<http method="GET" uri-template="http://api.tumblr.com/v2/blog/{uri.var.baseHostUrl}/avatar{uri.var.size}"/>
+	        </endpoint>
+	    </call>
+        
+             
+	</sequence>
+</template>
