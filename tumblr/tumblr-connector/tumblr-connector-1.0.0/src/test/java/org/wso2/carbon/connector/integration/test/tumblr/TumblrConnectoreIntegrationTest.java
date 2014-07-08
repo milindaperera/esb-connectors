@@ -570,16 +570,15 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
     @Test(priority = 2, groups = {"wso2.esb"}, description = "tumblr {reblogPost} text post integration positive test")
     public void testTumblrReblogTextPost() throws IOException, JSONException{
     	
-    	// TODO : Remove sysout prints
         String consumerKey = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_KEY);
         log.info("consumerKey : " + consumerKey);
         String consumerSecret = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_SECRET);
-        System.out.println("consumerSecret : " + consumerSecret);
+        log.info("consumerSecret : " + consumerSecret);
         
         String accessToken = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_ACCESS_TOKEN);
-        System.out.println("accessToken : " + accessToken);
+        log.info("accessToken : " + accessToken);
         String tokenSecret = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_TOKEN_SECRET);
-        System.out.println("tokenSecret : " + tokenSecret);
+        log.info("tokenSecret : " + tokenSecret);
         
         String reblogKey = connectorProperties.getProperty("reblogKey");
         String reblogPostId = connectorProperties.getProperty("reblogPostId");
@@ -589,12 +588,10 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
         String targetBlogUrl = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_BLOGURL);
         
         requestUrl = requestUrl + "/" + targetBlogUrl + "/post/reblog";
-        System.out.println("requestUrl : " + requestUrl);
+        log.info("requestUrl : " + requestUrl);
         
         HashMap<String, String> params = new HashMap<String, String>();
         
-        params.put("state", "published");
-        params.put("format", "html");
         params.put("type", "text");
         params.put("id", reblogPostId);
         params.put("reblog_key", reblogKey);
@@ -607,10 +604,10 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
         
         
         
-        System.out.println("DirectResponse : " +directResponse.toString());
+        log.info("DirectResponse : " +directResponse.toString());
         
         //Get response using the connector
-        System.out.println("Proxy service url :" + getProxyServiceURL("tumblr"));
+        log.info("Proxy service url :" + getProxyServiceURL("tumblr"));
         
         String jsonRequestBody = "{\"json_request\":{\"operation\":\"reblogPost\","
         											+ "\"consumerKey\":\"" 		+ consumerKey    +"\","
@@ -620,13 +617,13 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
         											+ "\"baseHostUrl\":\"" 		+targetBlogUrl 	 +"\","
         											+ "\"postId\":\""           +reblogPostId 	 +"\","
         											+ "\"reblogKey\":\""        +reblogKey 		 +"\","
-        											+ "\"	\":\"text\","
+        											+ "\"postType\":\"text\","
         											+ "\"postComment\":\"This is INTEGRATION TEST text post : REBLOG THROUGH ESB\"}}";
 
         JSONObject esbRestResponse = ConnectorIntegrationUtil.ConnectorHttpPOSTJsonObj(jsonRequestBody, 
         																				getProxyServiceURL("tumblr"));
         
-        System.out.println("ESB:" +esbRestResponse);
+        log.info("ESB:" +esbRestResponse);
        
         Assert.assertEquals(directResponse.get("meta").toString(), 	"{\"status\":201,\"msg\":\"Created\"}");
         Assert.assertEquals(esbRestResponse.get("meta").toString(), "{\"status\":201,\"msg\":\"Created\"}");
@@ -646,38 +643,36 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
     @Test(priority = 3, groups = {"wso2.esb"}, description = "tumblr {deletePost} text post integration positive test")
     public void testTumblrDeletePost() throws IOException, JSONException{
     	
-    	// TODO : Remove sysout prints
         String consumerKey = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_KEY);
-        System.out.println("consumerKey : " + consumerKey);
+        log.info("consumerKey : " + consumerKey);
         String consumerSecret = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_SECRET);
-        System.out.println("consumerSecret : " + consumerSecret);
+        log.info("consumerSecret : " + consumerSecret);
         
         String accessToken = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_ACCESS_TOKEN);
-        System.out.println("accessToken : " + accessToken);
+        log.info("accessToken : " + accessToken);
         String tokenSecret = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_TOKEN_SECRET);
-        System.out.println("tokenSecret : " + tokenSecret);
+        log.info("tokenSecret : " + tokenSecret);
         
         //Get Direct response from tumblr
         String requestUrl = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_BASEAPIURL);
         String targetBlogUrl = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_BLOGURL);
         
         requestUrl = requestUrl + "/" + targetBlogUrl + "/post/delete";
-        System.out.println("requestUrl : " + requestUrl);
+        log.info("requestUrl : " + requestUrl);
         
         HashMap<String, String> params = new HashMap<String, String>();
         
         params.put("id", createdTextPostID);
         
-        
-        
+
         JSONObject directResponse = ConnectorIntegrationUtil.DirectHttpAuthPOST(requestUrl, consumerKey, 
         																	consumerSecret, accessToken, 
         																	tokenSecret, params);
         
-        System.out.println("DirectResponse : " +directResponse.toString());
+        log.info("DirectResponse : " +directResponse.toString());
         
         //Get response using the connector
-        System.out.println("Proxy service url :" + getProxyServiceURL("tumblr"));
+        log.info("Proxy service url :" + getProxyServiceURL("tumblr"));
         
 
         String esbResponse = ConnectorIntegrationUtil.ConnectorHttpPOST("{\"json_request\":{\"operation\":\"deletePost\",\"consumerKey\":\""+consumerKey+"\","
@@ -689,7 +684,7 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
 																		getProxyServiceURL("tumblr"));
         
         
-        System.out.println("ESB:" +esbResponse);
+        log.info("ESB:" +esbResponse);
         
         Assert.assertEquals(directResponse.get("meta").toString(), "{\"status\":200,\"msg\":\"OK\"}");
         Assert.assertEquals(esbResponse, "{\"meta\":{\"status\":200,\"msg\":\"OK\"},\"response\":{\"id\":" +connecterCreatedTextPostID +"}}");
@@ -1579,7 +1574,7 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
      * @throws JSONException 
      * @throws IOException 
      */
-    @Test(priority = 6, groups = {"wso2.esb"}, description = "tumblr {editPost} text post integration positive test")
+    @Test(priority = 5, groups = {"wso2.esb"}, description = "tumblr {editPost} text post integration positive test")
     public void NegativeTestTumblrEditTextPost() throws IOException, JSONException{
     	
         String consumerKey = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_KEY);
@@ -1638,6 +1633,142 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
 
     
     
+    
+    
+    
+    
+    /**
+     * Negative integration test case for reblogPost (text post)
+     * reblog with wrong reblog key
+     * OAuth 1.0a authentcation required
+     * @throws JSONException 
+     * @throws IOException 
+     */
+    @Test(priority = 5, groups = {"wso2.esb"}, description = "tumblr {reblogPost} text post integration negative test")
+    public void NegativeTestTumblrReblogTextPost() throws IOException, JSONException{
+    	
+        String consumerKey = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_KEY);
+        log.info("consumerKey : " + consumerKey);
+        String consumerSecret = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_SECRET);
+        log.info("consumerSecret : " + consumerSecret);
+        
+        String accessToken = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_ACCESS_TOKEN);
+        log.info("accessToken : " + accessToken);
+        String tokenSecret = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_TOKEN_SECRET);
+        log.info("tokenSecret : " + tokenSecret);
+        
+        String reblogKey = "wrong" + connectorProperties.getProperty("reblogKey");
+        String reblogPostId = connectorProperties.getProperty("reblogPostId");
+        
+        //Edit Direct response from tumblr
+        String requestUrl = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_BASEAPIURL);
+        String targetBlogUrl = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_BLOGURL);
+        
+        requestUrl = requestUrl + "/" + targetBlogUrl + "/post/reblog";
+        log.info("requestUrl : " + requestUrl);
+        
+        HashMap<String, String> params = new HashMap<String, String>();
+        
+        params.put("type", "text");
+        params.put("id", reblogPostId);
+        params.put("reblog_key", reblogKey);
+        params.put("comment", "This is INTEGRATION TEST text post : REBLOG DIRECTLY");
+        
+        
+        JSONObject directResponse = ConnectorIntegrationUtil.DirectHttpAuthPOST(requestUrl, consumerKey, 
+        																	consumerSecret, accessToken, 
+        																	tokenSecret, params);
+        
+        
+        
+        log.info("DirectResponse : " +directResponse.toString());
+        
+        //Get response using the connector
+        log.info("Proxy service url :" + getProxyServiceURL("tumblr"));
+        
+        String jsonRequestBody = "{\"json_request\":{\"operation\":\"reblogPost\","
+        											+ "\"consumerKey\":\"" 		+ consumerKey    +"\","
+        											+ "\"consumerSecret\":\"" 	+ consumerSecret +"\","
+        											+ "\"accessToken\":\"" 		+ accessToken	 +"\","
+        											+ "\"tokenSecret\":\"" 		+tokenSecret 	 +"\","
+        											+ "\"baseHostUrl\":\"" 		+targetBlogUrl 	 +"\","
+        											+ "\"postId\":\""           +reblogPostId 	 +"\","
+        											+ "\"reblogKey\":\""        +reblogKey 		 +"\","
+        											+ "\"postType\":\"text\","
+        											+ "\"postComment\":\"This is INTEGRATION TEST text post : REBLOG THROUGH ESB\"}}";
+
+        JSONObject esbRestResponse = ConnectorIntegrationUtil.ConnectorHttpPOSTJsonObj(jsonRequestBody, 
+        																				getProxyServiceURL("tumblr"));
+        
+        log.info("ESB:" +esbRestResponse);
+       
+        Assert.assertEquals(esbRestResponse.get("meta").toString(),directResponse.get("meta").toString());
+        Assert.assertEquals(esbRestResponse.get("response").toString(),directResponse.get("response").toString());
+    }
+    
+    
+    
+    
+    
+    
+    /**
+     * Positive integration test case for deletePost (text post)
+     * mandatory parameters: post id 
+     * OAuth 1.0a authentcation required
+     * @throws JSONException 
+     * @throws IOException 
+     */
+    @Test(priority = 5, groups = {"wso2.esb"}, description = "tumblr {deletePost} text post integration positive test")
+    public void NegativeTestTumblrDeletePost() throws IOException, JSONException{
+    	
+    	// TODO : Remove sysout prints
+        String consumerKey = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_KEY);
+        log.info("consumerKey : " + consumerKey);
+        String consumerSecret = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_SECRET);
+        log.info("consumerSecret : " + consumerSecret);
+        
+        String accessToken = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_ACCESS_TOKEN);
+        log.info("accessToken : " + accessToken);
+        String tokenSecret = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_TOKEN_SECRET);
+        log.info("tokenSecret : " + tokenSecret);
+        
+        //Get Direct response from tumblr
+        String requestUrl = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_BASEAPIURL);
+        String targetBlogUrl = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_BLOGURL);
+        
+        requestUrl = requestUrl + "/" + targetBlogUrl + "/post/delete";
+        log.info("requestUrl : " + requestUrl);
+        
+        HashMap<String, String> params = new HashMap<String, String>();
+        
+        params.put("id", createdTextPostID);
+        
+
+        JSONObject directResponse = ConnectorIntegrationUtil.DirectHttpAuthPOST(requestUrl, consumerKey, 
+        																	consumerSecret, accessToken, 
+        																	tokenSecret, params);
+        
+        log.info("DirectResponse : " +directResponse.toString());
+        
+        //Get response using the connector
+        log.info("Proxy service url :" + getProxyServiceURL("tumblr"));
+        
+
+        String esbResponse = ConnectorIntegrationUtil.ConnectorHttpPOST("{\"json_request\":{\"operation\":\"deletePost\",\"consumerKey\":\""+consumerKey+"\","
+																			    +"\"consumerSecret\":\""+consumerSecret +"\","
+																			    +"\"accessToken\":\"" 	+accessToken  +"\","
+																			    +"\"tokenSecret\":\"" 	+tokenSecret  +"\","
+																			    +"\"baseHostUrl\":\"" 	+targetBlogUrl +"\","
+																			    +"\"postId\":\""		+connecterCreatedTextPostID +"\"}}", 
+																		getProxyServiceURL("tumblr"));
+        
+        log.info("ESB:" +esbResponse);
+        
+        JSONObject esbResponseObj = new JSONObject(esbResponse);
+        
+        Assert.assertEquals(esbResponseObj.get("meta").toString(), directResponse.get("meta").toString());
+        Assert.assertEquals(esbResponseObj.get("response").toString(), directResponse.get("response").toString());
+    }
     
     
 }

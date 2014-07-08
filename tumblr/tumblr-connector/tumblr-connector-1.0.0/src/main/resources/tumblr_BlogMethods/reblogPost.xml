@@ -64,21 +64,9 @@
         <property name="tumblr.param.tweet" expression="$func:postTweet" scope="default" type="STRING"/>
         <property name="tumblr.param.format" expression="$func:postFormat" scope="default" type="STRING"/>
         <property name="tumblr.param.slug" expression="$func:postSlug" scope="default" type="STRING"/>
-        
-        
-        
-        
+
         <property name="uri.var.mainUrl" value="http://api.tumblr.com/v2/blog"/>
-        
-        <!-- TEMPORARY -->
-        <log level="custom">
-        	<property name="OAUTH_CONSUMER_KEY" expression="get-property('tumblr.oauth.consumerKey')"/>
-        	<property name="OAUTH_CONSUMER_SECRET" expression="get-property('tumblr.oauth.consumerSecret')"/>
-            <property name="OAUTH_ACCESS_TOKEN" expression="get-property('tumblr.oauth.accessToken')"/>
-            <property name="OAUTH_ACCESS_SECRET" expression="get-property('tumblr.oauth.accessSecret')"/> 
-            <property name="BASE_HOST_URL" expression="get-property('uri.var.baseHostUrl')"/>    
-            <property name="POST_BODY" expression="get-property('tumblr.param.body')"/>       
-        </log>  
+
         
         <!-- Create POST url -->
         <property name="tumblr.url.createPost" expression="fn:concat('http://api.tumblr.com/v2/blog/', get-property('uri.var.baseHostUrl'), '/post/reblog')" />
@@ -129,22 +117,18 @@
 				<!-- TODO   :   HANDLE DEFAULT OTHERWISE WILL CREATE ERROR  -->
 			</default>
 		</switch>        
-        
-        <payloadFactory media-type="xml">
-	       <format>
-	          <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
-	             <soapenv:Header/>
-	             <soapenv:Body/>
-	          </soapenv:Envelope>
-	       </format>
-	       <args/>
-	    </payloadFactory>
-        
-        <property name="messageType" value="application/json" scope="axis2"/>
-        
+                
         <class name="org.wso2.carbon.connector.tumblr.TumblrReblogPost"/>  
         
-        
+        <payloadFactory media-type="json">
+	       <format>
+	          $1
+	       </format>
+	       <args>
+	       		<arg expression="get-property('tumblr.response')"/>
+	       </args>
+	    </payloadFactory>
+        <property name="messageType" value="application/json" scope="axis2"/>
         
         
             
