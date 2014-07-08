@@ -10,5 +10,6 @@ public class TumblrTestConstants {
 	protected static final String PROPERTY_BASEAPIURL = "ApiBaseUrl";
 	protected static final String PROPERTY_BLOGURL = "blogHostUrl";
 	
+	protected static final String PROPERTY_WRONG_POSTID = "wrongPostId";
 	protected static final String PROPERTY_ = "";
 }

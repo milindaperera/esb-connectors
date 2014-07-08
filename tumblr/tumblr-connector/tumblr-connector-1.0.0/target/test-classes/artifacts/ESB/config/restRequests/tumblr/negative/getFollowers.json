@@ -3,7 +3,7 @@
     "operation":"getFollowers",
     "consumerKey":"%s(consumerKey)",
     "consumerSecret":"%s(consumerSecret)",
-    "accessToken":"%s(accessToken)",
+    "accessToken":"wrong%s(accessToken)",
     "tokenSecret":"%s(tokenSecret)",
     "baseHostUrl":"%s(blogHostUrl)"
     }

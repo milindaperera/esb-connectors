@@ -2,6 +2,7 @@
     {
     "operation":"getPosts",
     "consumerKey":"%s(consumerKey)",
-    "baseHostUrl":"%s(blogHostUrl)"
+    "baseHostUrl":"%s(blogHostUrl)",
+    "postId":"%s(wrongPostId)"
     }
 }

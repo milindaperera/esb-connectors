@@ -7,15 +7,7 @@
 	<sequence>
 	
         <property name="uri.var.baseHostUrl" expression="$func:baseHostUrl" scope="default" type="STRING"/>
-        <property name="uri.var.size" expression="$func:baseHostUrl" scope="default" type="STRING"/>
-        
-        <log level="custom">
-        	<property name="OAUTH_CONSUMER_KEY" expression="get-property('tumblr.oauth.consumerKey')"/>
-        	<property name="BASE_HOST_URL" expression="get-property('uri.var.baseHostUrl')"/>           
-        </log>   
-        
-        <property name="messageType" value="application/json" scope="axis2" />
-        <property name="ContentType" value="application/json" scope="axis2"/>
+        <property name="uri.var.size" expression="$func:baseHostUrl" scope="default" type="STRING"/>        
         
         <!-- <property name="Accept" value="application/json" scope="transport"/> -->
         

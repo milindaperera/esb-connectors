@@ -119,9 +119,9 @@
             	
             	<case regex="getPosts">
             		<tumblr.getPosts>
-						<baseHostUrl>milindaperera.tumblr.com</baseHostUrl>
+						<baseHostUrl></baseHostUrl>
 						<type></type>
-						<id></id>
+						<id>{$ctx:request.postId}</id>
 						<tag></tag>
 						<limit></limit>
 						<offset></offset>

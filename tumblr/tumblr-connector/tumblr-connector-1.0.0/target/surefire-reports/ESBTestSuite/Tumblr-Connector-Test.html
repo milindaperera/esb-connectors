@@ -1,0 +1,219 @@
+<html>
+<head>
+<title>TestNG:  Tumblr-Connector-Test</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>Tumblr-Connector-Test</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>28/0/0</td>
+</tr><tr>
+<td>Started on:</td><td>Tue Jul 08 16:49:46 IST 2014</td>
+</tr>
+<tr><td>Total time:</td><td>88 seconds (88956 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td></td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.NegativeTestTumblrCreateTextPost()'><b>NegativeTestTumblrCreateTextPost</b><br>Test class: org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest<br>Test method: tumblr {createPost} text post integration negative test</td>
+<td></td>
+<td>1</td>
+<td>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest@54520eb</td></tr>
+<tr>
+<td title='org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.NegativeTestTumblrEditTextPost()'><b>NegativeTestTumblrEditTextPost</b><br>Test class: org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest<br>Test method: tumblr {editPost} text post integration positive test</td>
+<td></td>
+<td>1</td>
+<td>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest@54520eb</td></tr>
+<tr>
+<td title='org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.NegativeTestTumblrGetAvatar()'><b>NegativeTestTumblrGetAvatar</b><br>Test class: org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest<br>Test method: tumblr {getAvatar} integration negative test</td>
+<td></td>
+<td>1</td>
+<td>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest@54520eb</td></tr>
+<tr>
+<td title='org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.NegativeTestTumblrGetBlogInfo()'><b>NegativeTestTumblrGetBlogInfo</b><br>Test class: org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest<br>Test method: tumblr {getBlogInfo} integration negative test</td>
+<td></td>
+<td>1</td>
+<td>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest@54520eb</td></tr>
+<tr>
+<td title='org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.NegativeTestTumblrGetDraftedPosts()'><b>NegativeTestTumblrGetDraftedPosts</b><br>Test class: org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest<br>Test method: tumblr {getDraftedPosts} integration negative test</td>
+<td></td>
+<td>1</td>
+<td>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest@54520eb</td></tr>
+<tr>
+<td title='org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.NegativeTestTumblrGetFollowers()'><b>NegativeTestTumblrGetFollowers</b><br>Test class: org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest<br>Test method: tumblr {getFollowers} integration Negative test</td>
+<td></td>
+<td>1</td>
+<td>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest@54520eb</td></tr>
+<tr>
+<td title='org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.NegativeTestTumblrGetPosts()'><b>NegativeTestTumblrGetPosts</b><br>Test class: org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest<br>Test method: tumblr {getPosts} integration negative test</td>
+<td></td>
+<td>1</td>
+<td>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest@54520eb</td></tr>
+<tr>
+<td title='org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.NegativeTestTumblrGetQueuedPosts()'><b>NegativeTestTumblrGetQueuedPosts</b><br>Test class: org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest<br>Test method: tumblr {getPosts} integration negative test</td>
+<td></td>
+<td>1</td>
+<td>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest@54520eb</td></tr>
+<tr>
+<td title='org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.testTumblrCreateTextPost()'><b>testTumblrCreateTextPost</b><br>Test class: org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest<br>Test method: tumblr {createPost} text post integration positive test</td>
+<td></td>
+<td>1</td>
+<td>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest@54520eb</td></tr>
+<tr>
+<td title='org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.testTumblrDeletePost()'><b>testTumblrDeletePost</b><br>Test class: org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest<br>Test method: tumblr {deletePost} text post integration positive test</td>
+<td></td>
+<td>1</td>
+<td>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest@54520eb</td></tr>
+<tr>
+<td title='org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.testTumblrEditTextPost()'><b>testTumblrEditTextPost</b><br>Test class: org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest<br>Test method: tumblr {editPost} text post integration positive test</td>
+<td></td>
+<td>1</td>
+<td>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest@54520eb</td></tr>
+<tr>
+<td title='org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.testTumblrFollow()'><b>testTumblrFollow</b><br>Test class: org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest<br>Test method: tumblr {follow} integration positive test</td>
+<td></td>
+<td>1</td>
+<td>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest@54520eb</td></tr>
+<tr>
+<td title='org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.testTumblrGetAvatar()'><b>testTumblrGetAvatar</b><br>Test class: org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest<br>Test method: tumblr {getAvatar} integration positive test</td>
+<td></td>
+<td>0</td>
+<td>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest@54520eb</td></tr>
+<tr>
+<td title='org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.testTumblrGetBlogInfo()'><b>testTumblrGetBlogInfo</b><br>Test class: org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest<br>Test method: tumblr {getBlogInfo} integration positive test</td>
+<td></td>
+<td>1</td>
+<td>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest@54520eb</td></tr>
+<tr>
+<td title='org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.testTumblrGetBlogLikes()'><b>testTumblrGetBlogLikes</b><br>Test class: org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest<br>Test method: tumblr {getBlogLikes} integration positive test</td>
+<td></td>
+<td>1</td>
+<td>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest@54520eb</td></tr>
+<tr>
+<td title='org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.testTumblrGetDraftedPosts()'><b>testTumblrGetDraftedPosts</b><br>Test class: org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest<br>Test method: tumblr {getDraftedPosts} integration positive test</td>
+<td></td>
+<td>1</td>
+<td>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest@54520eb</td></tr>
+<tr>
+<td title='org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.testTumblrGetFollowers()'><b>testTumblrGetFollowers</b><br>Test class: org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest<br>Test method: tumblr {getFollowers} integration positive test</td>
+<td></td>
+<td>2</td>
+<td>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest@54520eb</td></tr>
+<tr>
+<td title='org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.testTumblrGetFollowing()'><b>testTumblrGetFollowing</b><br>Test class: org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest<br>Test method: tumblr {getFollowing} integration positive test</td>
+<td></td>
+<td>1</td>
+<td>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest@54520eb</td></tr>
+<tr>
+<td title='org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.testTumblrGetLikes()'><b>testTumblrGetLikes</b><br>Test class: org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest<br>Test method: tumblr {getLikes} integration positive test</td>
+<td></td>
+<td>1</td>
+<td>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest@54520eb</td></tr>
+<tr>
+<td title='org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.testTumblrGetPosts()'><b>testTumblrGetPosts</b><br>Test class: org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest<br>Test method: tumblr {getPosts} integration positive test</td>
+<td></td>
+<td>1</td>
+<td>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest@54520eb</td></tr>
+<tr>
+<td title='org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.testTumblrGetQueuedPosts()'><b>testTumblrGetQueuedPosts</b><br>Test class: org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest<br>Test method: tumblr {getPosts} integration positive test</td>
+<td></td>
+<td>1</td>
+<td>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest@54520eb</td></tr>
+<tr>
+<td title='org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.testTumblrGetTaggedPosts()'><b>testTumblrGetTaggedPosts</b><br>Test class: org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest<br>Test method: tumblr {getTaggedPosts} integration positive test</td>
+<td></td>
+<td>1</td>
+<td>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest@54520eb</td></tr>
+<tr>
+<td title='org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.testTumblrGetUserDashboard()'><b>testTumblrGetUserDashboard</b><br>Test class: org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest<br>Test method: tumblr {getUserDashboard} integration positive test</td>
+<td></td>
+<td>3</td>
+<td>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest@54520eb</td></tr>
+<tr>
+<td title='org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.testTumblrGetUserInfo()'><b>testTumblrGetUserInfo</b><br>Test class: org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest<br>Test method: tumblr {getUserInfo} integration positive test</td>
+<td></td>
+<td>1</td>
+<td>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest@54520eb</td></tr>
+<tr>
+<td title='org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.testTumblrLike()'><b>testTumblrLike</b><br>Test class: org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest<br>Test method: tumblr {like} integration positive test</td>
+<td></td>
+<td>1</td>
+<td>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest@54520eb</td></tr>
+<tr>
+<td title='org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.testTumblrReblogTextPost()'><b>testTumblrReblogTextPost</b><br>Test class: org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest<br>Test method: tumblr {reblogPost} text post integration positive test</td>
+<td></td>
+<td>1</td>
+<td>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest@54520eb</td></tr>
+<tr>
+<td title='org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.testTumblrUnFollow()'><b>testTumblrUnFollow</b><br>Test class: org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest<br>Test method: tumblr {unfollow} integration positive test</td>
+<td></td>
+<td>1</td>
+<td>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest@54520eb</td></tr>
+<tr>
+<td title='org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.testTumblrUnLike()'><b>testTumblrUnLike</b><br>Test class: org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest<br>Test method: tumblr {like} integration positive test</td>
+<td></td>
+<td>1</td>
+<td>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest@54520eb</td></tr>
+</table><p>
+</body>
+</html>

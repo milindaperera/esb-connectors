@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>TestNG:  Unit Test</title>
+<style type="text/css">
+table caption,table.info_table,table.param,table.passed,table.failed {margin-bottom:10px;border:1px solid #000099;border-collapse:collapse;empty-cells:show;}
+table.info_table td,table.info_table th,table.param td,table.param th,table.passed td,table.passed th,table.failed td,table.failed th {
+border:1px solid #000099;padding:.25em .5em .25em .5em
+}
+table.param th {vertical-align:bottom}
+td.numi,th.numi,td.numi_attn {
+text-align:right
+}
+tr.total td {font-weight:bold}
+table caption {
+text-align:center;font-weight:bold;
+}
+table.passed tr.stripe td,table tr.passedodd td {background-color: #00AA00;}
+table.passed td,table tr.passedeven td {background-color: #33FF33;}
+table.passed tr.stripe td,table tr.skippedodd td {background-color: #cccccc;}
+table.passed td,table tr.skippedodd td {background-color: #dddddd;}
+table.failed tr.stripe td,table tr.failedodd td,table.param td.numi_attn {background-color: #FF3333;}
+table.failed td,table tr.failedeven td,table.param tr.stripe td.numi_attn {background-color: #DD0000;}
+tr.stripe td,tr.stripe th {background-color: #E6EBF9;}
+p.totop {font-size:85%;text-align:center;border-bottom:2px black solid}
+div.shootout {padding:2em;border:3px #4854A8 solid}
+</style>
+</head>
+<body>
+<table cellspacing=0 cellpadding=0 class="param">
+<tr><th>Test</th><th class="numi">Methods<br/>Passed</th><th class="numi">Scenarios<br/>Passed</th><th class="numi"># skipped</th><th class="numi"># failed</th><th class="numi">Total<br/>Time</th><th class="numi">Included<br/>Groups</th><th class="numi">Excluded<br/>Groups</th></tr>
+<tr><td style="text-align:left;padding-right:2em">Tumblr-Connector-Test</td><td class="numi">28</td><td class="numi">28</td><td class="numi">0</td><td class="numi">0</td><td class="numi">89.0 seconds</td><td class="numi"></td><td class="numi"></td></tr>
+</table>
+<a id="summary"></a>
+<table cellspacing=0 cellpadding=0 class="passed">
+<tr><th>Class</th><th>Method</th><th># of<br/>Scenarios</th><th>Time<br/>(Msecs)</th></tr>
+<tr><th colspan="4">Tumblr-Connector-Test &#8212; passed</th></tr>
+<tr class="passedodd"><td rowspan="28">org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest<td><a href="#m1"><b>testTumblrGetFollowing</b> (java.lang.reflect.Method) ("tumblr {getFollowing} integration positive test")</a></td><td class="numi">1</td><td class="numi">1144</td></tr><tr class="passedodd"><td><a href="#m2"><b>NegativeTestTumblrGetBlogInfo</b> (java.lang.reflect.Method) ("tumblr {getBlogInfo} integration negative test")</a></td><td class="numi">1</td><td class="numi">1041</td></tr><tr class="passedodd"><td><a href="#m3"><b>testTumblrGetDraftedPosts</b> (java.lang.reflect.Method) ("tumblr {getDraftedPosts} integration positive test")</a></td><td class="numi">1</td><td class="numi">1443</td></tr><tr class="passedodd"><td><a href="#m4"><b>testTumblrReblogTextPost</b> (java.lang.reflect.Method) ("tumblr {reblogPost} text post integration positive test")</a></td><td class="numi">1</td><td class="numi">1792</td></tr><tr class="passedodd"><td><a href="#m5"><b>testTumblrGetTaggedPosts</b> (java.lang.reflect.Method) ("tumblr {getTaggedPosts} integration positive test")</a></td><td class="numi">1</td><td class="numi">1771</td></tr><tr class="passedodd"><td><a href="#m6"><b>testTumblrGetQueuedPosts</b> (java.lang.reflect.Method) ("tumblr {getPosts} integration positive test")</a></td><td class="numi">1</td><td class="numi">1067</td></tr><tr class="passedodd"><td><a href="#m7"><b>testTumblrDeletePost</b> (java.lang.reflect.Method) ("tumblr {deletePost} text post integration positive test")</a></td><td class="numi">1</td><td class="numi">1087</td></tr><tr class="passedodd"><td><a href="#m8"><b>testTumblrGetFollowers</b> (java.lang.reflect.Method) ("tumblr {getFollowers} integration positive test")</a></td><td class="numi">1</td><td class="numi">2236</td></tr><tr class="passedodd"><td><a href="#m9"><b>testTumblrGetBlogInfo</b> (java.lang.reflect.Method) ("tumblr {getBlogInfo} integration positive test")</a></td><td class="numi">1</td><td class="numi">1050</td></tr><tr class="passedodd"><td><a href="#m10"><b>NegativeTestTumblrGetAvatar</b> (java.lang.reflect.Method) ("tumblr {getAvatar} integration negative test")</a></td><td class="numi">1</td><td class="numi">1036</td></tr><tr class="passedodd"><td><a href="#m11"><b>testTumblrEditTextPost</b> (java.lang.reflect.Method) ("tumblr {editPost} text post integration positive test")</a></td><td class="numi">1</td><td class="numi">1269</td></tr><tr class="passedodd"><td><a href="#m12"><b>testTumblrCreateTextPost</b> (java.lang.reflect.Method) ("tumblr {createPost} text post integration positive test")</a></td><td class="numi">1</td><td class="numi">1435</td></tr><tr class="passedodd"><td><a href="#m13"><b>testTumblrGetUserInfo</b> (java.lang.reflect.Method) ("tumblr {getUserInfo} integration positive test")</a></td><td class="numi">1</td><td class="numi">1077</td></tr><tr class="passedodd"><td><a href="#m14"><b>testTumblrGetAvatar</b> (java.lang.reflect.Method) ("tumblr {getAvatar} integration positive test")</a></td><td class="numi">1</td><td class="numi">892</td></tr><tr class="passedodd"><td><a href="#m15"><b>NegativeTestTumblrGetFollowers</b> (java.lang.reflect.Method) ("tumblr {getFollowers} integration Negative test")</a></td><td class="numi">1</td><td class="numi">1026</td></tr><tr class="passedodd"><td><a href="#m16"><b>NegativeTestTumblrEditTextPost</b> (java.lang.reflect.Method) ("tumblr {editPost} text post integration positive test")</a></td><td class="numi">1</td><td class="numi">1040</td></tr><tr class="passedodd"><td><a href="#m17"><b>NegativeTestTumblrCreateTextPost</b> (java.lang.reflect.Method) ("tumblr {createPost} text post integration negative test")</a></td><td class="numi">1</td><td class="numi">1109</td></tr><tr class="passedodd"><td><a href="#m18"><b>NegativeTestTumblrGetPosts</b> (java.lang.reflect.Method) ("tumblr {getPosts} integration negative test")</a></td><td class="numi">1</td><td class="numi">1094</td></tr><tr class="passedodd"><td><a href="#m19"><b>testTumblrGetPosts</b> (java.lang.reflect.Method) ("tumblr {getPosts} integration positive test")</a></td><td class="numi">1</td><td class="numi">1285</td></tr><tr class="passedodd"><td><a href="#m20"><b>NegativeTestTumblrGetDraftedPosts</b> (java.lang.reflect.Method) ("tumblr {getDraftedPosts} integration negative test")</a></td><td class="numi">1</td><td class="numi">1195</td></tr><tr class="passedodd"><td><a href="#m21"><b>testTumblrUnLike</b> (java.lang.reflect.Method) ("tumblr {like} integration positive test")</a></td><td class="numi">1</td><td class="numi">1080</td></tr><tr class="passedodd"><td><a href="#m22"><b>NegativeTestTumblrGetQueuedPosts</b> (java.lang.reflect.Method) ("tumblr {getPosts} integration negative test")</a></td><td class="numi">1</td><td class="numi">1063</td></tr><tr class="passedodd"><td><a href="#m23"><b>testTumblrGetUserDashboard</b> (java.lang.reflect.Method) ("tumblr {getUserDashboard} integration positive test")</a></td><td class="numi">1</td><td class="numi">3054</td></tr><tr class="passedodd"><td><a href="#m24"><b>testTumblrFollow</b> (java.lang.reflect.Method) ("tumblr {follow} integration positive test")</a></td><td class="numi">1</td><td class="numi">1101</td></tr><tr class="passedodd"><td><a href="#m25"><b>testTumblrUnFollow</b> (java.lang.reflect.Method) ("tumblr {unfollow} integration positive test")</a></td><td class="numi">1</td><td class="numi">1076</td></tr><tr class="passedodd"><td><a href="#m26"><b>testTumblrGetBlogLikes</b> (java.lang.reflect.Method) ("tumblr {getBlogLikes} integration positive test")</a></td><td class="numi">1</td><td class="numi">1236</td></tr><tr class="passedodd"><td><a href="#m27"><b>testTumblrLike</b> (java.lang.reflect.Method) ("tumblr {like} integration positive test")</a></td><td class="numi">1</td><td class="numi">1077</td></tr><tr class="passedodd"><td><a href="#m28"><b>testTumblrGetLikes</b> (java.lang.reflect.Method) ("tumblr {getLikes} integration positive test")</a></td><td class="numi">1</td><td class="numi">1090</td></tr>
+</table>
+<h1>Tumblr-Connector-Test</h1>
+<a id="m1"></a><h2>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest:testTumblrGetFollowing</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m2"></a><h2>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest:NegativeTestTumblrGetBlogInfo</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m3"></a><h2>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest:testTumblrGetDraftedPosts</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m4"></a><h2>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest:testTumblrReblogTextPost</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m5"></a><h2>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest:testTumblrGetTaggedPosts</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m6"></a><h2>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest:testTumblrGetQueuedPosts</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m7"></a><h2>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest:testTumblrDeletePost</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m8"></a><h2>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest:testTumblrGetFollowers</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m9"></a><h2>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest:testTumblrGetBlogInfo</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m10"></a><h2>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest:NegativeTestTumblrGetAvatar</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m11"></a><h2>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest:testTumblrEditTextPost</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m12"></a><h2>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest:testTumblrCreateTextPost</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m13"></a><h2>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest:testTumblrGetUserInfo</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m14"></a><h2>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest:testTumblrGetAvatar</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m15"></a><h2>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest:NegativeTestTumblrGetFollowers</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m16"></a><h2>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest:NegativeTestTumblrEditTextPost</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m17"></a><h2>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest:NegativeTestTumblrCreateTextPost</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m18"></a><h2>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest:NegativeTestTumblrGetPosts</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m19"></a><h2>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest:testTumblrGetPosts</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m20"></a><h2>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest:NegativeTestTumblrGetDraftedPosts</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m21"></a><h2>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest:testTumblrUnLike</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m22"></a><h2>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest:NegativeTestTumblrGetQueuedPosts</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m23"></a><h2>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest:testTumblrGetUserDashboard</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m24"></a><h2>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest:testTumblrFollow</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m25"></a><h2>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest:testTumblrUnFollow</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m26"></a><h2>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest:testTumblrGetBlogLikes</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m27"></a><h2>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest:testTumblrLike</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+<a id="m28"></a><h2>org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest:testTumblrGetLikes</h2>
+<p class="totop"><a href="#summary">back to summary</a></p>
+</body></html>

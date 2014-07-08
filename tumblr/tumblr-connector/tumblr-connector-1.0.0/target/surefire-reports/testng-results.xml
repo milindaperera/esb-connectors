@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="28" passed="28">
+  <reporter-output>
+  </reporter-output>
+  <suite name="ESBTestSuite" duration-ms="88956" started-at="2014-07-08T16:49:46Z" finished-at="2014-07-08T16:51:15Z">
+    <groups>
+      <group name="java.lang.reflect.Method">
+        <method signature="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.NegativeTestTumblrCreateTextPost()" name="NegativeTestTumblrCreateTextPost" class="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest"/>
+        <method signature="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.NegativeTestTumblrEditTextPost()" name="NegativeTestTumblrEditTextPost" class="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest"/>
+        <method signature="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.NegativeTestTumblrGetAvatar()" name="NegativeTestTumblrGetAvatar" class="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest"/>
+        <method signature="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.NegativeTestTumblrGetBlogInfo()" name="NegativeTestTumblrGetBlogInfo" class="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest"/>
+        <method signature="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.NegativeTestTumblrGetDraftedPosts()" name="NegativeTestTumblrGetDraftedPosts" class="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest"/>
+        <method signature="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.NegativeTestTumblrGetFollowers()" name="NegativeTestTumblrGetFollowers" class="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest"/>
+        <method signature="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.NegativeTestTumblrGetPosts()" name="NegativeTestTumblrGetPosts" class="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest"/>
+        <method signature="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.NegativeTestTumblrGetQueuedPosts()" name="NegativeTestTumblrGetQueuedPosts" class="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest"/>
+        <method signature="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.testTumblrCreateTextPost()" name="testTumblrCreateTextPost" class="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest"/>
+        <method signature="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.testTumblrDeletePost()" name="testTumblrDeletePost" class="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest"/>
+        <method signature="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.testTumblrEditTextPost()" name="testTumblrEditTextPost" class="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest"/>
+        <method signature="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.testTumblrFollow()" name="testTumblrFollow" class="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest"/>
+        <method signature="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.testTumblrGetAvatar()" name="testTumblrGetAvatar" class="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest"/>
+        <method signature="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.testTumblrGetBlogInfo()" name="testTumblrGetBlogInfo" class="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest"/>
+        <method signature="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.testTumblrGetBlogLikes()" name="testTumblrGetBlogLikes" class="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest"/>
+        <method signature="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.testTumblrGetDraftedPosts()" name="testTumblrGetDraftedPosts" class="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest"/>
+        <method signature="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.testTumblrGetFollowers()" name="testTumblrGetFollowers" class="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest"/>
+        <method signature="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.testTumblrGetFollowing()" name="testTumblrGetFollowing" class="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest"/>
+        <method signature="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.testTumblrGetLikes()" name="testTumblrGetLikes" class="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest"/>
+        <method signature="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.testTumblrGetPosts()" name="testTumblrGetPosts" class="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest"/>
+        <method signature="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.testTumblrGetQueuedPosts()" name="testTumblrGetQueuedPosts" class="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest"/>
+        <method signature="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.testTumblrGetTaggedPosts()" name="testTumblrGetTaggedPosts" class="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest"/>
+        <method signature="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.testTumblrGetUserDashboard()" name="testTumblrGetUserDashboard" class="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest"/>
+        <method signature="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.testTumblrGetUserInfo()" name="testTumblrGetUserInfo" class="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest"/>
+        <method signature="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.testTumblrLike()" name="testTumblrLike" class="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest"/>
+        <method signature="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.testTumblrReblogTextPost()" name="testTumblrReblogTextPost" class="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest"/>
+        <method signature="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.testTumblrUnFollow()" name="testTumblrUnFollow" class="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest"/>
+        <method signature="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest.testTumblrUnLike()" name="testTumblrUnLike" class="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest"/>
+      </group>
+    </groups>
+    <test name="Tumblr-Connector-Test" duration-ms="88956" started-at="2014-07-08T16:49:46Z" finished-at="2014-07-08T16:51:15Z">
+      <class name="org.wso2.carbon.connector.integration.test.tumblr.TumblrConnectoreIntegrationTest">
+        <test-method status="PASS" signature="init()" name="init" is-config="true" duration-ms="53024" started-at="2014-07-08T16:49:46Z" finished-at="2014-07-08T16:50:39Z">
+        </test-method>
+        <test-method status="PASS" signature="testTumblrCreateTextPost()" name="testTumblrCreateTextPost" duration-ms="1435" started-at="2014-07-08T16:50:39Z" description="tumblr {createPost} text post integration positive test" finished-at="2014-07-08T16:50:41Z">
+        </test-method>
+        <test-method status="PASS" signature="testTumblrEditTextPost()" name="testTumblrEditTextPost" duration-ms="1269" started-at="2014-07-08T16:50:41Z" description="tumblr {editPost} text post integration positive test" finished-at="2014-07-08T16:50:42Z">
+        </test-method>
+        <test-method status="PASS" signature="testTumblrGetAvatar()" name="testTumblrGetAvatar" duration-ms="892" started-at="2014-07-08T16:50:42Z" description="tumblr {getAvatar} integration positive test" finished-at="2014-07-08T16:50:43Z">
+        </test-method>
+        <test-method status="PASS" signature="testTumblrGetBlogInfo()" name="testTumblrGetBlogInfo" duration-ms="1050" started-at="2014-07-08T16:50:43Z" description="tumblr {getBlogInfo} integration positive test" finished-at="2014-07-08T16:50:44Z">
+        </test-method>
+        <test-method status="PASS" signature="testTumblrGetBlogLikes()" name="testTumblrGetBlogLikes" duration-ms="1236" started-at="2014-07-08T16:50:44Z" description="tumblr {getBlogLikes} integration positive test" finished-at="2014-07-08T16:50:45Z">
+        </test-method>
+        <test-method status="PASS" signature="testTumblrGetDraftedPosts()" name="testTumblrGetDraftedPosts" duration-ms="1443" started-at="2014-07-08T16:50:45Z" description="tumblr {getDraftedPosts} integration positive test" finished-at="2014-07-08T16:50:47Z">
+        </test-method>
+        <test-method status="PASS" signature="testTumblrGetFollowers()" name="testTumblrGetFollowers" duration-ms="2236" started-at="2014-07-08T16:50:47Z" description="tumblr {getFollowers} integration positive test" finished-at="2014-07-08T16:50:49Z">
+        </test-method>
+        <test-method status="PASS" signature="testTumblrGetPosts()" name="testTumblrGetPosts" duration-ms="1285" started-at="2014-07-08T16:50:49Z" description="tumblr {getPosts} integration positive test" finished-at="2014-07-08T16:50:50Z">
+        </test-method>
+        <test-method status="PASS" signature="testTumblrGetQueuedPosts()" name="testTumblrGetQueuedPosts" duration-ms="1067" started-at="2014-07-08T16:50:50Z" description="tumblr {getPosts} integration positive test" finished-at="2014-07-08T16:50:51Z">
+        </test-method>
+        <test-method status="PASS" signature="testTumblrReblogTextPost()" name="testTumblrReblogTextPost" duration-ms="1792" started-at="2014-07-08T16:50:51Z" description="tumblr {reblogPost} text post integration positive test" finished-at="2014-07-08T16:50:53Z">
+        </test-method>
+        <test-method status="PASS" signature="testTumblrDeletePost()" name="testTumblrDeletePost" duration-ms="1087" started-at="2014-07-08T16:50:53Z" description="tumblr {deletePost} text post integration positive test" finished-at="2014-07-08T16:50:54Z">
+        </test-method>
+        <test-method status="PASS" signature="testTumblrFollow()" name="testTumblrFollow" duration-ms="1101" started-at="2014-07-08T16:50:54Z" description="tumblr {follow} integration positive test" finished-at="2014-07-08T16:50:55Z">
+        </test-method>
+        <test-method status="PASS" signature="testTumblrGetFollowing()" name="testTumblrGetFollowing" duration-ms="1144" started-at="2014-07-08T16:50:55Z" description="tumblr {getFollowing} integration positive test" finished-at="2014-07-08T16:50:56Z">
+        </test-method>
+        <test-method status="PASS" signature="testTumblrGetLikes()" name="testTumblrGetLikes" duration-ms="1090" started-at="2014-07-08T16:50:56Z" description="tumblr {getLikes} integration positive test" finished-at="2014-07-08T16:50:57Z">
+        </test-method>
+        <test-method status="PASS" signature="testTumblrGetUserDashboard()" name="testTumblrGetUserDashboard" duration-ms="3054" started-at="2014-07-08T16:50:57Z" description="tumblr {getUserDashboard} integration positive test" finished-at="2014-07-08T16:51:00Z">
+        </test-method>
+        <test-method status="PASS" signature="testTumblrGetUserInfo()" name="testTumblrGetUserInfo" duration-ms="1077" started-at="2014-07-08T16:51:00Z" description="tumblr {getUserInfo} integration positive test" finished-at="2014-07-08T16:51:01Z">
+        </test-method>
+        <test-method status="PASS" signature="testTumblrLike()" name="testTumblrLike" duration-ms="1077" started-at="2014-07-08T16:51:01Z" description="tumblr {like} integration positive test" finished-at="2014-07-08T16:51:03Z">
+        </test-method>
+        <test-method status="PASS" signature="testTumblrUnFollow()" name="testTumblrUnFollow" duration-ms="1076" started-at="2014-07-08T16:51:03Z" description="tumblr {unfollow} integration positive test" finished-at="2014-07-08T16:51:04Z">
+        </test-method>
+        <test-method status="PASS" signature="testTumblrUnLike()" name="testTumblrUnLike" duration-ms="1080" started-at="2014-07-08T16:51:04Z" description="tumblr {like} integration positive test" finished-at="2014-07-08T16:51:05Z">
+        </test-method>
+        <test-method status="PASS" signature="testTumblrGetTaggedPosts()" name="testTumblrGetTaggedPosts" duration-ms="1771" started-at="2014-07-08T16:51:05Z" description="tumblr {getTaggedPosts} integration positive test" finished-at="2014-07-08T16:51:07Z">
+        </test-method>
+        <test-method status="PASS" signature="NegativeTestTumblrCreateTextPost()" name="NegativeTestTumblrCreateTextPost" duration-ms="1109" started-at="2014-07-08T16:51:07Z" description="tumblr {createPost} text post integration negative test" finished-at="2014-07-08T16:51:08Z">
+        </test-method>
+        <test-method status="PASS" signature="NegativeTestTumblrGetAvatar()" name="NegativeTestTumblrGetAvatar" duration-ms="1036" started-at="2014-07-08T16:51:08Z" description="tumblr {getAvatar} integration negative test" finished-at="2014-07-08T16:51:09Z">
+        </test-method>
+        <test-method status="PASS" signature="NegativeTestTumblrGetBlogInfo()" name="NegativeTestTumblrGetBlogInfo" duration-ms="1041" started-at="2014-07-08T16:51:09Z" description="tumblr {getBlogInfo} integration negative test" finished-at="2014-07-08T16:51:10Z">
+        </test-method>
+        <test-method status="PASS" signature="NegativeTestTumblrGetDraftedPosts()" name="NegativeTestTumblrGetDraftedPosts" duration-ms="1195" started-at="2014-07-08T16:51:10Z" description="tumblr {getDraftedPosts} integration negative test" finished-at="2014-07-08T16:51:11Z">
+        </test-method>
+        <test-method status="PASS" signature="NegativeTestTumblrGetFollowers()" name="NegativeTestTumblrGetFollowers" duration-ms="1026" started-at="2014-07-08T16:51:11Z" description="tumblr {getFollowers} integration Negative test" finished-at="2014-07-08T16:51:12Z">
+        </test-method>
+        <test-method status="PASS" signature="NegativeTestTumblrGetPosts()" name="NegativeTestTumblrGetPosts" duration-ms="1094" started-at="2014-07-08T16:51:12Z" description="tumblr {getPosts} integration negative test" finished-at="2014-07-08T16:51:13Z">
+        </test-method>
+        <test-method status="PASS" signature="NegativeTestTumblrGetQueuedPosts()" name="NegativeTestTumblrGetQueuedPosts" duration-ms="1063" started-at="2014-07-08T16:51:13Z" description="tumblr {getPosts} integration negative test" finished-at="2014-07-08T16:51:14Z">
+        </test-method>
+        <test-method status="PASS" signature="NegativeTestTumblrEditTextPost()" name="NegativeTestTumblrEditTextPost" duration-ms="1040" started-at="2014-07-08T16:51:14Z" description="tumblr {editPost} text post integration positive test" finished-at="2014-07-08T16:51:15Z">
+        </test-method>
+        <test-method status="PASS" signature="cleanUpEsb()" name="cleanUpEsb" is-config="true" duration-ms="46" started-at="2014-07-08T16:51:15Z" finished-at="2014-07-08T16:51:15Z">
+        </test-method>
+      </class>
+    </test>
+  </suite>
+</testng-results>

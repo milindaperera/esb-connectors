@@ -15,40 +15,24 @@
 	<sequence>
 		<property name="uri.var.baseHostUrl" expression="$func:baseHostUrl" scope="default" type="STRING"/>
         <property name="tumblr.param.offset" expression="$func:offset"/>
-        <property name="tumblr.param.limit" expression="$func:limit"/>
-        
-        <log level="custom">
-        	<property name="OAUTH_CONSUMER_KEY" expression="get-property('tumblr.oauth.consumerKey')"/>
-        	<property name="OAUTH_CONSUMER_SECRET" expression="get-property('tumblr.oauth.consumerSecret')"/>
-            <property name="OAUTH_ACCESS_TOKEN" expression="get-property('tumblr.oauth.accessToken')"/>
-            <property name="OAUTH_ACCESS_SECRET" expression="get-property('tumblr.oauth.accessSecret')"/>
-            
-            <property name="BASE_HOST_URL" expression="get-property('uri.var.baseHostUrl')"/>
-            <property name="OFFSET" expression="get-property('tumblr.param.offset')"/>
-            <property name="LIMIT" expression="get-property('tumblr.param.limit')"/>
-        </log>
-        
-		<payloadFactory media-type="xml">
-	       <format>
-	          <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
-	             <soapenv:Header/>
-	             <soapenv:Body/>
-	          </soapenv:Envelope>
-	       </format>
-	       <args/>
-	    </payloadFactory>
-        
-        <!-- TODO : CHECK MESSAGE TYPE SETTING -->
-        <property name="messageType" value="application/json" scope="axis2"/>
+        <property name="tumblr.param.limit" expression="$func:limit"/>  
         
         <!-- Create GET url -->
-        <property name="tumblr.url.followers" expression="fn:concat('http://api.tumblr.com/v2/blog/', get-property('uri.var.baseHostUrl'), '/followers')" />
-        
-        <log level="custom">
-        	<property name="BASE_URL" expression="get-property('tumblr.url.followers')"/>
-        </log>
-               
+        <property name="tumblr.url.followers" expression="fn:concat('http://api.tumblr.com/v2/blog/', 
+        															get-property('uri.var.baseHostUrl'), 
+        															'/followers')" />
+                       
        	<class name="org.wso2.carbon.connector.tumblr.TumblrGetFollowers"/>
+       	
+       	<payloadFactory media-type="json">
+	       <format>
+	          $1
+	       </format>
+	       <args>
+	       		<arg expression="get-property('tumblr.response')"/>
+	       </args>
+	    </payloadFactory>
+        <property name="messageType" value="application/json" scope="axis2"/>
                
 	</sequence>
 </template>
