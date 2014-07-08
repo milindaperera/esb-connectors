@@ -1,7 +1,0 @@
-{"json_request":
-    {
-    "operation":"getPosts",
-    "consumerKey":"%s(consumerKey)",
-    "baseHostUrl":"%s(blogHostUrl)"
-    }
-}
