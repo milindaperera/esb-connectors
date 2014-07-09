@@ -18,11 +18,6 @@
         <property name="uri.var.limit" expression="$func:limit" scope="default" type="STRING"/>
         <property name="uri.var.filter" expression="$func:filter" scope="default" type="STRING"/>
         
-        <log level="custom">
-        	<property name="OAUTH_CONSUMER_KEY" expression="get-property('tumblr.oauth.consumerKey')"/>
-        	<property name="BASE_HOST_URL" expression="get-property('uri.var.baseHostUrl')"/>           
-        </log> 
-        
         <!-- Create tumblr rest endpoint uri api key param -->
         <property name="uri.var.apiKey" expression="get-property('tumblr.oauth.consumerKey')"/>  
         

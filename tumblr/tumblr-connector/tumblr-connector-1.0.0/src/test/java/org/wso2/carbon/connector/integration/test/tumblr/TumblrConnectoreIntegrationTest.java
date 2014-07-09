@@ -119,7 +119,6 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
     @Test(priority = 1, groups = {"wso2.esb"}, description = "tumblr {getBlogLikes} integration positive test")
     public void testTumblrGetBlogLikes() throws JSONException, Exception {
 
-    	// TODO : Remove sysout prints
         String consumerKey = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_KEY);
         log.info("consumerKey : " + consumerKey);
         
@@ -131,9 +130,10 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
         log.info("requestUrl : " + requestUrl);
         
         String directResponse = ConnectorIntegrationUtil.DirectHttpGET(requestUrl);
-        log.info("DirectResponse : " +directResponse);
+        
         
         JSONObject directResponseJObj = new JSONObject(directResponse);
+        log.info("DirectResponse : " +directResponseJObj.get("meta").toString());
         
         //Get response using the connector
         log.info("Proxy service url :" + getProxyServiceURL("tumblr"));
@@ -144,7 +144,7 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
         
          
         //String connectorResponse = ConnectorIntegrationUtil.ConnectorHttpPOST("", getProxyServiceURL("tumblr"));
-        log.info("Connector response : " +esbRestResponse.getBody().toString());
+        log.info("Connector response : " +esbRestResponse.getBody().get("meta").toString());
         
         Assert.assertEquals(esbRestResponse.getBody().get("meta").toString(), directResponseJObj.get("meta").toString());
         Assert.assertEquals(esbRestResponse.getBody().get("response").toString(), directResponseJObj.get("response").toString());
@@ -703,38 +703,37 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
     @Test(priority = 3, groups = {"wso2.esb"}, description = "tumblr {getUserInfo} integration positive test")
     public void testTumblrGetUserInfo() throws IOException, JSONException{
     	
-    	// TODO : Remove sysout prints
         String consumerKey = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_KEY);
-        System.out.println("consumerKey : " + consumerKey);
+        log.info("consumerKey : " + consumerKey);
         String consumerSecret = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_SECRET);
-        System.out.println("consumerSecret : " + consumerSecret);
+        log.info("consumerSecret : " + consumerSecret);
         
         String accessToken = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_ACCESS_TOKEN);
-        System.out.println("accessToken : " + accessToken);
+        log.info("accessToken : " + accessToken);
         String tokenSecret = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_TOKEN_SECRET);
-        System.out.println("tokenSecret : " + tokenSecret);
+        log.info("tokenSecret : " + tokenSecret);
         
         //Get Direct response from tumblr
         String requestUrl = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_BASEAPIURL);
         
         requestUrl = "http://api.tumblr.com/v2/user/info";
-        System.out.println("requestUrl : " + requestUrl);        
+        log.info("requestUrl : " + requestUrl);        
         
         JSONObject directResponse = ConnectorIntegrationUtil.DirectHttpAuthGET(requestUrl, 		consumerKey, 
         																		consumerSecret, accessToken, 
         																		tokenSecret, 	null);        
 
-        System.out.println("DirectResponse : " +directResponse.toString());
+        log.info("DirectResponse : " +directResponse.toString());
         
         //Get response using the connector
-        System.out.println("Proxy service url :" + getProxyServiceURL("tumblr"));
+        log.info("Proxy service url :" + getProxyServiceURL("tumblr"));
         
 
         RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURL("tumblr"), 
-        																"POST", esbRequestHeadersMap,  "getUserInfo.json");
+        											"POST", esbRequestHeadersMap,  "getUserInfo.json");
         
-        System.out.println("ESB:" +esbRestResponse.getBody().get("meta").toString());
-        System.out.println("ESB:" +esbRestResponse.getBody().get("response").toString());
+        log.info("ESB:" +esbRestResponse.getBody().get("meta").toString());
+        log.info("ESB:" +esbRestResponse.getBody().get("response").toString());
     	
         Assert.assertEquals(esbRestResponse.getBody().get("meta").toString(), 
         														directResponse.get("meta").toString());
@@ -751,38 +750,36 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
     @Test(priority = 3, groups = {"wso2.esb"}, description = "tumblr {getUserDashboard} integration positive test")
     public void testTumblrGetUserDashboard() throws IOException, JSONException{
     	
-    	// TODO : Remove sysout prints
         String consumerKey = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_KEY);
-        System.out.println("consumerKey : " + consumerKey);
+        log.info("consumerKey : " + consumerKey);
         String consumerSecret = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_SECRET);
-        System.out.println("consumerSecret : " + consumerSecret);
+        log.info("consumerSecret : " + consumerSecret);
         
         String accessToken = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_ACCESS_TOKEN);
-        System.out.println("accessToken : " + accessToken);
+        log.info("accessToken : " + accessToken);
         String tokenSecret = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_TOKEN_SECRET);
-        System.out.println("tokenSecret : " + tokenSecret);
+        log.info("tokenSecret : " + tokenSecret);
         
         //Get Direct response from tumblr
         String requestUrl = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_BASEAPIURL);
         
         requestUrl = "http://api.tumblr.com/v2/user/dashboard";
-        System.out.println("requestUrl : " + requestUrl);        
+        log.info("requestUrl : " + requestUrl);        
         
         JSONObject directResponse = ConnectorIntegrationUtil.DirectHttpAuthGET(requestUrl, 		consumerKey, 
         																		consumerSecret, accessToken, 
         																		tokenSecret, 	null);        
 
-        //System.out.println("DirectResponse : " +directResponse.toString());
+        log.info("DirectResponse : " +directResponse.get("meta").toString());
         
         //Get response using the connector
-        System.out.println("Proxy service url :" + getProxyServiceURL("tumblr"));
+        log.info("Proxy service url :" + getProxyServiceURL("tumblr"));
         
 
         RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURL("tumblr"), 
         																"POST", esbRequestHeadersMap,  "getUserDashboard.json");
         
-        System.out.println("ESB:" +esbRestResponse.getBody().get("meta").toString());
-        //System.out.println("ESB:" +esbRestResponse.getBody().get("response").toString());
+        log.info("ESB:" +esbRestResponse.getBody().get("meta").toString());
     	
         Assert.assertEquals(esbRestResponse.getBody().get("meta").toString(), 
         														directResponse.get("meta").toString());
@@ -803,38 +800,38 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
     @Test(priority = 3, groups = {"wso2.esb"}, description = "tumblr {getLikes} integration positive test")
     public void testTumblrGetLikes() throws IOException, JSONException{
     	
-    	// TODO : Remove sysout prints
         String consumerKey = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_KEY);
-        System.out.println("consumerKey : " + consumerKey);
+        log.info("consumerKey : " + consumerKey);
         String consumerSecret = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_SECRET);
-        System.out.println("consumerSecret : " + consumerSecret);
+        log.info("consumerSecret : " + consumerSecret);
         
         String accessToken = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_ACCESS_TOKEN);
-        System.out.println("accessToken : " + accessToken);
+        log.info("accessToken : " + accessToken);
         String tokenSecret = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_TOKEN_SECRET);
-        System.out.println("tokenSecret : " + tokenSecret);
+        log.info("tokenSecret : " + tokenSecret);
         
         //Get Direct response from tumblr
         String requestUrl = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_BASEAPIURL);
         
         requestUrl = "http://api.tumblr.com/v2/user/likes";
-        System.out.println("requestUrl : " + requestUrl);        
+        log.info("requestUrl : " + requestUrl);        
         
         JSONObject directResponse = ConnectorIntegrationUtil.DirectHttpAuthGET(requestUrl, 		consumerKey, 
         																		consumerSecret, accessToken, 
         																		tokenSecret, 	null);        
 
-        System.out.println("DirectResponse : " +directResponse.toString());
+        log.info("DirectResponse : " +directResponse.get("meta").toString());
+        log.debug("DirectResponse : " +directResponse.get("response").toString());
         
         //Get response using the connector
-        System.out.println("Proxy service url :" + getProxyServiceURL("tumblr"));
+        log.info("Proxy service url :" + getProxyServiceURL("tumblr"));
         
 
         RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURL("tumblr"), 
-        																"POST", esbRequestHeadersMap,  "getLikes.json");
+        												"POST", esbRequestHeadersMap,  "getLikes.json");
         
-        System.out.println("ESB:" +esbRestResponse.getBody().get("meta").toString());
-        System.out.println("ESB:" +esbRestResponse.getBody().get("response").toString());
+        log.info("ESB:" +esbRestResponse.getBody().get("meta").toString());
+        log.debug("ESB:" +esbRestResponse.getBody().get("response").toString());
     	
         Assert.assertEquals(esbRestResponse.getBody().get("meta").toString(), 
         														directResponse.get("meta").toString());
@@ -850,41 +847,41 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
      * @throws JSONException 
      * @throws IOException 
      */
-    @Test(priority = 3, groups = {"wso2.esb"}, description = "tumblr {getFollowing} integration positive test")
+    @Test(priority = 2, groups = {"wso2.esb"}, description = "tumblr {getFollowing} integration positive test")
     public void testTumblrGetFollowing() throws IOException, JSONException{
     	
-    	// TODO : Remove sysout prints
         String consumerKey = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_KEY);
-        System.out.println("consumerKey : " + consumerKey);
+        log.info("consumerKey : " + consumerKey);
         String consumerSecret = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_SECRET);
-        System.out.println("consumerSecret : " + consumerSecret);
+        log.info("consumerSecret : " + consumerSecret);
         
         String accessToken = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_ACCESS_TOKEN);
-        System.out.println("accessToken : " + accessToken);
+        log.info("accessToken : " + accessToken);
         String tokenSecret = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_TOKEN_SECRET);
-        System.out.println("tokenSecret : " + tokenSecret);
+        log.info("tokenSecret : " + tokenSecret);
         
         //Get Direct response from tumblr
         String requestUrl = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_BASEAPIURL);
         
         requestUrl = "http://api.tumblr.com/v2/user/following";
-        System.out.println("requestUrl : " + requestUrl);        
+        log.info("requestUrl : " + requestUrl);        
         
         JSONObject directResponse = ConnectorIntegrationUtil.DirectHttpAuthGET(requestUrl, 		consumerKey, 
         																		consumerSecret, accessToken, 
         																		tokenSecret, 	null);        
 
-        System.out.println("DirectResponse : " +directResponse.toString());
+        log.info("DirectResponse : " +directResponse.get("meta").toString());
+        log.debug("DirectResponse : " +directResponse.get("response").toString());
         
         //Get response using the connector
-        System.out.println("Proxy service url :" + getProxyServiceURL("tumblr"));
+        log.info("Proxy service url :" + getProxyServiceURL("tumblr"));
         
 
         RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURL("tumblr"), 
-        																"POST", esbRequestHeadersMap,  "getFollowing.json");
+        												"POST", esbRequestHeadersMap,  "getFollowing.json");
         
-        System.out.println("ESB:" +esbRestResponse.getBody().get("meta").toString());
-        System.out.println("ESB:" +esbRestResponse.getBody().get("response").toString());
+        log.info("ESB:" +esbRestResponse.getBody().get("meta").toString());
+        log.debug("ESB:" +esbRestResponse.getBody().get("response").toString());
     	
         Assert.assertEquals(esbRestResponse.getBody().get("meta").toString(), 
         														directResponse.get("meta").toString());
@@ -906,16 +903,15 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
     @Test(priority = 3, groups = {"wso2.esb"}, description = "tumblr {follow} integration positive test")
     public void testTumblrFollow() throws IOException, JSONException{
     	
-    	// TODO : Remove sysout prints
         String consumerKey = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_KEY);
-        System.out.println("consumerKey : " + consumerKey);
+        log.info("consumerKey : " + consumerKey);
         String consumerSecret = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_SECRET);
-        System.out.println("consumerSecret : " + consumerSecret);
+        log.info("consumerSecret : " + consumerSecret);
         
         String accessToken = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_ACCESS_TOKEN);
-        System.out.println("accessToken : " + accessToken);
+        log.info("accessToken : " + accessToken);
         String tokenSecret = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_TOKEN_SECRET);
-        System.out.println("tokenSecret : " + tokenSecret);
+        log.info("tokenSecret : " + tokenSecret);
         
         String followBlogUrl = connectorProperties.getProperty("followBlogUrl");
         
@@ -925,23 +921,23 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
         params.put("url", followBlogUrl);
         
         String requestUrl = "http://api.tumblr.com/v2/user/follow";
-        System.out.println("requestUrl : " + requestUrl);        
+        log.info("requestUrl : " + requestUrl);        
         
         JSONObject directResponse = ConnectorIntegrationUtil.DirectHttpAuthPOST(requestUrl, consumerKey, 
         																		consumerSecret, accessToken, 
         																		tokenSecret, params);       
 
-        System.out.println("DirectResponse : " +directResponse.toString());
+        log.info("DirectResponse : " +directResponse.toString());
         
         //Get response using the connector
-        System.out.println("Proxy service url :" + getProxyServiceURL("tumblr"));
+        log.info("Proxy service url :" + getProxyServiceURL("tumblr"));
         
 
         RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURL("tumblr"), 
-        																"POST", esbRequestHeadersMap,  "follow.json");
+        												"POST", esbRequestHeadersMap,  "follow.json");
         
-        System.out.println("ESB:" +esbRestResponse.getBody().get("meta").toString());
-        System.out.println("ESB:" +esbRestResponse.getBody().get("response").toString());
+        log.info("ESB:" +esbRestResponse.getBody().get("meta").toString());
+        log.info("ESB:" +esbRestResponse.getBody().get("response").toString());
     	
         Assert.assertEquals(esbRestResponse.getBody().get("meta").toString(), 
         														directResponse.get("meta").toString());
@@ -961,16 +957,15 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
     @Test(priority = 3, groups = {"wso2.esb"}, description = "tumblr {unfollow} integration positive test")
     public void testTumblrUnFollow() throws IOException, JSONException{
     	
-    	// TODO : Remove sysout prints
         String consumerKey = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_KEY);
-        System.out.println("consumerKey : " + consumerKey);
+        log.info("consumerKey : " + consumerKey);
         String consumerSecret = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_SECRET);
-        System.out.println("consumerSecret : " + consumerSecret);
+        log.info("consumerSecret : " + consumerSecret);
         
         String accessToken = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_ACCESS_TOKEN);
-        System.out.println("accessToken : " + accessToken);
+        log.info("accessToken : " + accessToken);
         String tokenSecret = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_TOKEN_SECRET);
-        System.out.println("tokenSecret : " + tokenSecret);
+        log.info("tokenSecret : " + tokenSecret);
         
         String followBlogUrl = connectorProperties.getProperty("followBlogUrl");
         
@@ -980,23 +975,23 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
         params.put("url", followBlogUrl);
         
         String requestUrl = "http://api.tumblr.com/v2/user/unfollow";
-        System.out.println("requestUrl : " + requestUrl);        
+        log.info("requestUrl : " + requestUrl);        
         
         JSONObject directResponse = ConnectorIntegrationUtil.DirectHttpAuthPOST(requestUrl, consumerKey, 
         																		consumerSecret, accessToken, 
         																		tokenSecret, params);       
 
-        System.out.println("DirectResponse : " +directResponse.toString());
+        log.info("DirectResponse : " +directResponse.toString());
         
         //Get response using the connector
-        System.out.println("Proxy service url :" + getProxyServiceURL("tumblr"));
+        log.info("Proxy service url :" + getProxyServiceURL("tumblr"));
         
 
         RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURL("tumblr"), 
         																"POST", esbRequestHeadersMap,  "unFollow.json");
         
-        System.out.println("ESB:" +esbRestResponse.getBody().get("meta").toString());
-        System.out.println("ESB:" +esbRestResponse.getBody().get("response").toString());
+        log.info("ESB:" +esbRestResponse.getBody().get("meta").toString());
+        log.info("ESB:" +esbRestResponse.getBody().get("response").toString());
     	
         Assert.assertEquals(esbRestResponse.getBody().get("meta").toString(), 
         														directResponse.get("meta").toString());
@@ -1017,16 +1012,15 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
     @Test(priority = 3, groups = {"wso2.esb"}, description = "tumblr {like} integration positive test")
     public void testTumblrLike() throws IOException, JSONException{
     	
-    	// TODO : Remove sysout prints
         String consumerKey = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_KEY);
-        System.out.println("consumerKey : " + consumerKey);
+        log.info("consumerKey : " + consumerKey);
         String consumerSecret = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_SECRET);
-        System.out.println("consumerSecret : " + consumerSecret);
+        log.info("consumerSecret : " + consumerSecret);
         
         String accessToken = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_ACCESS_TOKEN);
-        System.out.println("accessToken : " + accessToken);
+        log.info("accessToken : " + accessToken);
         String tokenSecret = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_TOKEN_SECRET);
-        System.out.println("tokenSecret : " + tokenSecret);
+        log.info("tokenSecret : " + tokenSecret);
         
         String directReblogKey = connectorProperties.getProperty("directLikeReblogKey");
         String directPostId = connectorProperties.getProperty("directLikePostId");
@@ -1038,23 +1032,23 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
         params.put("reblog_key", directReblogKey);
         
         String requestUrl = "http://api.tumblr.com/v2/user/like";
-        System.out.println("requestUrl : " + requestUrl);        
+        log.info("requestUrl : " + requestUrl);        
         
         JSONObject directResponse = ConnectorIntegrationUtil.DirectHttpAuthPOST(requestUrl, consumerKey, 
         																		consumerSecret, accessToken, 
         																		tokenSecret, params);       
 
-        System.out.println("DirectResponse : " +directResponse.toString());
+        log.info("DirectResponse : " +directResponse.toString());
         
         //Get response using the connector
-        System.out.println("Proxy service url :" + getProxyServiceURL("tumblr"));
+        log.info("Proxy service url :" + getProxyServiceURL("tumblr"));
         
 
         RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURL("tumblr"), 
         																"POST", esbRequestHeadersMap,  "like.json");
         
-        System.out.println("ESB:" +esbRestResponse.getBody().get("meta").toString());
-        System.out.println("ESB:" +esbRestResponse.getBody().get("response").toString());
+        log.info("ESB:" +esbRestResponse.getBody().get("meta").toString());
+        log.info("ESB:" +esbRestResponse.getBody().get("response").toString());
     	
         Assert.assertEquals(esbRestResponse.getBody().get("meta").toString(), 
         														directResponse.get("meta").toString());
@@ -1075,17 +1069,16 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
      */
     @Test(priority = 3, groups = {"wso2.esb"}, description = "tumblr {like} integration positive test")
     public void testTumblrUnLike() throws IOException, JSONException{
-    	
-    	// TODO : Remove sysout prints
+
         String consumerKey = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_KEY);
-        System.out.println("consumerKey : " + consumerKey);
+        log.info("consumerKey : " + consumerKey);
         String consumerSecret = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_SECRET);
-        System.out.println("consumerSecret : " + consumerSecret);
+        log.info("consumerSecret : " + consumerSecret);
         
         String accessToken = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_ACCESS_TOKEN);
-        System.out.println("accessToken : " + accessToken);
+        log.info("accessToken : " + accessToken);
         String tokenSecret = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_TOKEN_SECRET);
-        System.out.println("tokenSecret : " + tokenSecret);
+        log.info("tokenSecret : " + tokenSecret);
         
         String reblogKey = connectorProperties.getProperty("directLikeReblogKey");
         String postId = connectorProperties.getProperty("directLikePostId");
@@ -1097,23 +1090,23 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
         params.put("reblog_key", reblogKey);
         
         String requestUrl = "http://api.tumblr.com/v2/user/unlike";
-        System.out.println("requestUrl : " + requestUrl);        
+        log.info("requestUrl : " + requestUrl);        
         
         JSONObject directResponse = ConnectorIntegrationUtil.DirectHttpAuthPOST(requestUrl, consumerKey, 
         																		consumerSecret, accessToken, 
         																		tokenSecret, params);       
 
-        System.out.println("DirectResponse : " +directResponse.toString());
+        log.info("DirectResponse : " +directResponse.toString());
         
         //Get response using the connector
-        System.out.println("Proxy service url :" + getProxyServiceURL("tumblr"));
+        log.info("Proxy service url :" + getProxyServiceURL("tumblr"));
         
 
         RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURL("tumblr"), 
-        																"POST", esbRequestHeadersMap,  "unLike.json");
+        												"POST", esbRequestHeadersMap,  "unLike.json");
         
-        System.out.println("ESB:" +esbRestResponse.getBody().get("meta").toString());
-        System.out.println("ESB:" +esbRestResponse.getBody().get("response").toString());
+        log.info("ESB:" +esbRestResponse.getBody().get("meta").toString());
+        log.info("ESB:" +esbRestResponse.getBody().get("response").toString());
     	
         Assert.assertEquals(esbRestResponse.getBody().get("meta").toString(), 
         														directResponse.get("meta").toString());
@@ -1769,6 +1762,450 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
         Assert.assertEquals(esbResponseObj.get("meta").toString(), directResponse.get("meta").toString());
         Assert.assertEquals(esbResponseObj.get("response").toString(), directResponse.get("response").toString());
     }
+    
+    
+    
+    
+    /**
+     * Negative integration test case for getUserInfo 
+     * send request with wrong access token
+     * OAuth 1.0a authentcation required
+     * @throws JSONException 
+     * @throws IOException 
+     */
+    @Test(priority = 5, groups = {"wso2.esb"}, description = "tumblr {getUserInfo} integration negative test")
+    public void NegativeTestTumblrGetUserInfo() throws IOException, JSONException{
+    	
+        String consumerKey = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_KEY);
+        log.info("consumerKey : " + consumerKey);
+        String consumerSecret = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_SECRET);
+        log.info("consumerSecret : " + consumerSecret);
+        
+        String accessToken = "wrong" + connectorProperties.getProperty(TumblrTestConstants.PROPERTY_ACCESS_TOKEN);
+        log.info("accessToken : " + accessToken);
+        String tokenSecret = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_TOKEN_SECRET);
+        log.info("tokenSecret : " + tokenSecret);
+        
+        //Get Direct response from tumblr
+        String requestUrl = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_BASEAPIURL);
+        
+        requestUrl = "http://api.tumblr.com/v2/user/info";
+        log.info("requestUrl : " + requestUrl);        
+        
+        JSONObject directResponse = ConnectorIntegrationUtil.DirectHttpAuthGET(requestUrl, 		consumerKey, 
+        																		consumerSecret, accessToken, 
+        																		tokenSecret, 	null);        
+
+        log.info("DirectResponse : " +directResponse.toString());
+        
+        //Get response using the connector
+        log.info("Proxy service url :" + getProxyServiceURL("tumblr"));
+        
+
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURL("tumblr"), 
+        											"POST", esbRequestHeadersMap,  "negative/getUserInfo.json");
+        
+        log.info("ESB:" +esbRestResponse.getBody().get("meta").toString());
+        log.info("ESB:" +esbRestResponse.getBody().get("response").toString());
+    	
+        Assert.assertEquals(esbRestResponse.getBody().get("meta").toString(), 
+        														directResponse.get("meta").toString());
+        Assert.assertEquals(esbRestResponse.getBody().get("response").toString(), 
+																directResponse.get("response").toString());
+    }
+    
+    
+    
+    
+    
+    /**
+     * Negative integration test case for getUserDashboard 
+     * send request with wrong access token
+     * OAuth 1.0a authentcation required
+     * @throws JSONException 
+     * @throws IOException 
+     */
+    @Test(priority = 5, groups = {"wso2.esb"}, description = "tumblr {getUserDashboard} integration negative test")
+    public void NegativeTestTumblrGetUserDashboard() throws IOException, JSONException{
+    	
+        String consumerKey = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_KEY);
+        log.info("consumerKey : " + consumerKey);
+        String consumerSecret = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_SECRET);
+        log.info("consumerSecret : " + consumerSecret);
+        
+        String accessToken = "wrong" + connectorProperties.getProperty(TumblrTestConstants.PROPERTY_ACCESS_TOKEN);
+        log.info("accessToken : " + accessToken);
+        String tokenSecret = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_TOKEN_SECRET);
+        log.info("tokenSecret : " + tokenSecret);
+        
+        //Get Direct response from tumblr
+        String requestUrl = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_BASEAPIURL);
+        
+        requestUrl = "http://api.tumblr.com/v2/user/dashboard";
+        log.info("requestUrl : " + requestUrl);        
+        
+        JSONObject directResponse = ConnectorIntegrationUtil.DirectHttpAuthGET(requestUrl, 		consumerKey, 
+        																		consumerSecret, accessToken, 
+        																		tokenSecret, 	null);        
+
+        log.info("DirectResponse : " +directResponse.get("meta").toString());
+        log.info("DirectResponse : " +directResponse.get("response").toString());
+        //Get response using the connector
+        log.info("Proxy service url :" + getProxyServiceURL("tumblr"));
+        
+
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURL("tumblr"), 
+        											"POST", esbRequestHeadersMap,  "negative/getUserDashboard.json");
+        
+        log.info("ESB:" +esbRestResponse.getBody().get("meta").toString());
+        log.info("ESB:" +esbRestResponse.getBody().get("response").toString());
+    	
+        Assert.assertEquals(esbRestResponse.getBody().get("meta").toString(), 
+        														directResponse.get("meta").toString());
+        Assert.assertEquals(esbRestResponse.getBody().get("response").toString(), 
+																directResponse.get("response").toString());
+    }
+    
+    
+    
+    /**
+     * Negative integration test case for getLikes 
+     * using wrong access token
+     * OAuth 1.0a authentcation required
+     * @throws JSONException 
+     * @throws IOException 
+     */
+    @Test(priority = 5, groups = {"wso2.esb"}, description = "tumblr {getLikes} integration negative test")
+    public void negativeTestTumblrGetLikes() throws IOException, JSONException{
+    	
+        String consumerKey = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_KEY);
+        log.info("consumerKey : " + consumerKey);
+        String consumerSecret = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_SECRET);
+        log.info("consumerSecret : " + consumerSecret);
+        
+        String accessToken = "wrong" + connectorProperties.getProperty(TumblrTestConstants.PROPERTY_ACCESS_TOKEN);
+        log.info("accessToken : " + accessToken);
+        String tokenSecret = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_TOKEN_SECRET);
+        log.info("tokenSecret : " + tokenSecret);
+        
+        //Get Direct response from tumblr
+        String requestUrl = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_BASEAPIURL);
+        
+        requestUrl = "http://api.tumblr.com/v2/user/likes";
+        log.info("requestUrl : " + requestUrl);        
+        
+        JSONObject directResponse = ConnectorIntegrationUtil.DirectHttpAuthGET(requestUrl, 		consumerKey, 
+        																		consumerSecret, accessToken, 
+        																		tokenSecret, 	null);        
+
+        log.info("DirectResponse : " +directResponse.get("meta").toString());
+        log.info("DirectResponse : " +directResponse.get("response").toString());
+        
+        //Get response using the connector
+        log.info("Proxy service url :" + getProxyServiceURL("tumblr"));
+        
+
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURL("tumblr"), 
+        												"POST", esbRequestHeadersMap,  "negative/getLikes.json");
+        
+        log.info("ESB:" +esbRestResponse.getBody().get("meta").toString());
+        log.info("ESB:" +esbRestResponse.getBody().get("response").toString());
+    	
+        Assert.assertEquals(esbRestResponse.getBody().get("meta").toString(), 
+        														directResponse.get("meta").toString());
+        Assert.assertEquals(esbRestResponse.getBody().get("response").toString(), 
+																directResponse.get("response").toString());
+    }
+    
+    
+    
+    
+    
+    
+    
+    /**
+     * Negative integration test case for getFollowing 
+     * using wrong access token
+     * OAuth 1.0a authentcation required
+     * @throws JSONException 
+     * @throws IOException 
+     */
+    @Test(priority = 5, groups = {"wso2.esb"}, description = "tumblr {getFollowing} integration negative test")
+    public void NegativeTestTumblrGetFollowing() throws IOException, JSONException{
+    	
+        String consumerKey = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_KEY);
+        log.info("consumerKey : " + consumerKey);
+        String consumerSecret = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_SECRET);
+        log.info("consumerSecret : " + consumerSecret);
+        
+        String accessToken =  "wrong" + connectorProperties.getProperty(TumblrTestConstants.PROPERTY_ACCESS_TOKEN);
+        log.info("accessToken : " + accessToken);
+        String tokenSecret = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_TOKEN_SECRET);
+        log.info("tokenSecret : " + tokenSecret);
+        
+        //Get Direct response from tumblr
+        String requestUrl = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_BASEAPIURL);
+        
+        requestUrl = "http://api.tumblr.com/v2/user/following";
+        log.info("requestUrl : " + requestUrl);        
+        
+        JSONObject directResponse = ConnectorIntegrationUtil.DirectHttpAuthGET(requestUrl, 		consumerKey, 
+        																		consumerSecret, accessToken, 
+        																		tokenSecret, 	null);        
+
+        log.info("DirectResponse : " +directResponse.get("meta").toString());
+        log.info("DirectResponse : " +directResponse.get("response").toString());
+        
+        //Get response using the connector
+        log.info("Proxy service url :" + getProxyServiceURL("tumblr"));
+        
+
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURL("tumblr"), 
+        												"POST", esbRequestHeadersMap,  "negative/getFollowing.json");
+        
+        log.info("ESB:" +esbRestResponse.getBody().get("meta").toString());
+        log.info("ESB:" +esbRestResponse.getBody().get("response").toString());
+    	
+        Assert.assertEquals(esbRestResponse.getBody().get("meta").toString(), 
+        														directResponse.get("meta").toString());
+        Assert.assertEquals(esbRestResponse.getBody().get("response").toString(), 
+																directResponse.get("response").toString());
+    }
+    
+    
+    
+    
+    /**
+     * Negative integration test case for follow 
+     * send request to follow blog which does not exist
+     * OAuth 1.0a authentcation required
+     * @throws JSONException 
+     * @throws IOException 
+     */
+    @Test(priority = 5, groups = {"wso2.esb"}, description = "tumblr {follow} integration negative test")
+    public void NegativeTestTumblrFollow() throws IOException, JSONException{
+    	
+        String consumerKey = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_KEY);
+        log.info("consumerKey : " + consumerKey);
+        String consumerSecret = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_SECRET);
+        log.info("consumerSecret : " + consumerSecret);
+        
+        String accessToken = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_ACCESS_TOKEN);
+        log.info("accessToken : " + accessToken);
+        String tokenSecret = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_TOKEN_SECRET);
+        log.info("tokenSecret : " + tokenSecret);
+        
+        String followBlogUrl = "nonexistingblog";
+        
+        //Get Direct response from tumblr        
+        HashMap<String, String> params = new HashMap<String, String>();
+        
+        params.put("url", followBlogUrl);
+        
+        String requestUrl = "http://api.tumblr.com/v2/user/follow";
+        log.info("requestUrl : " + requestUrl);        
+        
+        JSONObject directResponse = ConnectorIntegrationUtil.DirectHttpAuthPOST(requestUrl, consumerKey, 
+        																		consumerSecret, accessToken, 
+        																		tokenSecret, params);       
+
+        log.info("DirectResponse : " +directResponse.toString());
+        
+        //Get response using the connector
+        log.info("Proxy service url :" + getProxyServiceURL("tumblr"));
+        
+
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURL("tumblr"), 
+        												"POST", esbRequestHeadersMap,  "negative/follow.json");
+        
+        log.info("ESB:" +esbRestResponse.getBody().get("meta").toString());
+        log.info("ESB:" +esbRestResponse.getBody().get("response").toString());
+    	
+        Assert.assertEquals(esbRestResponse.getBody().get("meta").toString(), 
+        														directResponse.get("meta").toString());
+        Assert.assertEquals(esbRestResponse.getBody().get("response").toString(), 
+																directResponse.get("response").toString());
+    }
+    
+    
+    
+    
+    
+    
+    /**
+     * Negative integration test case for unfollow 
+     * send request to follow blog which does not exist
+     * OAuth 1.0a authentcation required
+     * @throws JSONException 
+     * @throws IOException 
+     */
+    @Test(priority = 5, groups = {"wso2.esb"}, description = "tumblr {unfollow} integration negative test")
+    public void NegativeTestTumblrUnFollow() throws IOException, JSONException{
+    	
+        String consumerKey = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_KEY);
+        log.info("consumerKey : " + consumerKey);
+        String consumerSecret = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_SECRET);
+        log.info("consumerSecret : " + consumerSecret);
+        
+        String accessToken = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_ACCESS_TOKEN);
+        log.info("accessToken : " + accessToken);
+        String tokenSecret = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_TOKEN_SECRET);
+        log.info("tokenSecret : " + tokenSecret);
+        
+        String followBlogUrl = "nonexistingblog";
+
+        //Get Direct response from tumblr        
+        HashMap<String, String> params = new HashMap<String, String>();
+        
+        params.put("url", followBlogUrl);
+        
+        String requestUrl = "http://api.tumblr.com/v2/user/unfollow";
+        log.info("requestUrl : " + requestUrl);        
+        
+        JSONObject directResponse = ConnectorIntegrationUtil.DirectHttpAuthPOST(requestUrl, consumerKey, 
+        																		consumerSecret, accessToken, 
+        																		tokenSecret, params);       
+
+        log.info("DirectResponse : " +directResponse.toString());
+        
+        //Get response using the connector
+        log.info("Proxy service url :" + getProxyServiceURL("tumblr"));
+        
+
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURL("tumblr"), 
+        												"POST", esbRequestHeadersMap,  "negative/unFollow.json");
+        
+        log.info("ESB:" +esbRestResponse.getBody().get("meta").toString());
+        log.info("ESB:" +esbRestResponse.getBody().get("response").toString());
+    	
+        Assert.assertEquals(esbRestResponse.getBody().get("meta").toString(), 
+        														directResponse.get("meta").toString());
+        Assert.assertEquals(esbRestResponse.getBody().get("response").toString(), 
+																directResponse.get("response").toString());
+    }
+    
+    
+    
+    
+    
+    
+    
+    /**
+     * Neagtive integration test case for like 
+     * send request with wrong post id 
+     * OAuth 1.0a authentcation required
+     * @throws JSONException 
+     * @throws IOException 
+     */
+    @Test(priority = 5, groups = {"wso2.esb"}, description = "tumblr {like} integration negative test")
+    public void NegativeTestTumblrLike() throws IOException, JSONException{
+    	
+        String consumerKey = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_KEY);
+        log.info("consumerKey : " + consumerKey);
+        String consumerSecret = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_SECRET);
+        log.info("consumerSecret : " + consumerSecret);
+        
+        String accessToken = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_ACCESS_TOKEN);
+        log.info("accessToken : " + accessToken);
+        String tokenSecret = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_TOKEN_SECRET);
+        log.info("tokenSecret : " + tokenSecret);
+        
+        String directReblogKey = connectorProperties.getProperty("directLikeReblogKey");
+        String directPostId = connectorProperties.getProperty("wrongPostId");
+        
+        //Get Direct response from tumblr        
+        HashMap<String, String> params = new HashMap<String, String>();
+        
+        params.put("id", directPostId);
+        params.put("reblog_key", directReblogKey);
+        
+        String requestUrl = "http://api.tumblr.com/v2/user/like";
+        log.info("requestUrl : " + requestUrl);        
+        
+        JSONObject directResponse = ConnectorIntegrationUtil.DirectHttpAuthPOST(requestUrl, consumerKey, 
+        																		consumerSecret, accessToken, 
+        																		tokenSecret, params);       
+
+        log.info("DirectResponse : " +directResponse.toString());
+        
+        //Get response using the connector
+        log.info("Proxy service url :" + getProxyServiceURL("tumblr"));
+        
+
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURL("tumblr"), 
+        													"POST", esbRequestHeadersMap,  "negative/like.json");
+        
+        log.info("ESB:" +esbRestResponse.getBody().get("meta").toString());
+        log.info("ESB:" +esbRestResponse.getBody().get("response").toString());
+    	
+        Assert.assertEquals(esbRestResponse.getBody().get("meta").toString(), 
+        														directResponse.get("meta").toString());
+        Assert.assertEquals(esbRestResponse.getBody().get("response").toString(), 
+																directResponse.get("response").toString());
+    }
+    
+    
+    
+    
+    
+    /**
+     * Negative integration test case for unLike 
+     * Try to unlike already unliked post
+     * OAuth 1.0a authentcation required
+     * @throws JSONException 
+     * @throws IOException 
+     */
+    @Test(priority = 5, groups = {"wso2.esb"}, description = "tumblr {like} integration negative test")
+    public void NegativeTestTumblrUnLike() throws IOException, JSONException{
+
+        String consumerKey = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_KEY);
+        log.info("consumerKey : " + consumerKey);
+        String consumerSecret = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_SECRET);
+        log.info("consumerSecret : " + consumerSecret);
+        
+        String accessToken = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_ACCESS_TOKEN);
+        log.info("accessToken : " + accessToken);
+        String tokenSecret = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_TOKEN_SECRET);
+        log.info("tokenSecret : " + tokenSecret);
+        
+        String reblogKey = connectorProperties.getProperty("directLikeReblogKey");
+        String postId = connectorProperties.getProperty("directLikePostId");
+        
+        //Get Direct response from tumblr        
+        HashMap<String, String> params = new HashMap<String, String>();
+        
+        params.put("id", postId);
+        params.put("reblog_key", reblogKey);
+        
+        String requestUrl = "http://api.tumblr.com/v2/user/unlike";
+        log.info("requestUrl : " + requestUrl);        
+        
+        JSONObject directResponse = ConnectorIntegrationUtil.DirectHttpAuthPOST(requestUrl, consumerKey, 
+        																		consumerSecret, accessToken, 
+        																		tokenSecret, params);       
+
+        log.info("DirectResponse : " +directResponse.toString());
+        
+        //Get response using the connector
+        log.info("Proxy service url :" + getProxyServiceURL("tumblr"));
+        
+
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURL("tumblr"), 
+        												"POST", esbRequestHeadersMap,  "negative/unLike.json");
+        
+        log.info("ESB:" +esbRestResponse.getBody().get("meta").toString());
+        log.info("ESB:" +esbRestResponse.getBody().get("response").toString());
+    	
+        Assert.assertEquals(esbRestResponse.getBody().get("meta").toString(), 
+        														directResponse.get("meta").toString());
+        /*Assert.assertEquals(esbRestResponse.getBody().get("response").toString(), 
+																directResponse.get("response").toString());*/
+    }
+ 
+    
+    
+    
+    
     
     
 }

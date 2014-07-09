@@ -15,15 +15,7 @@
 		<property name="tumblr.oauth.consumerKey" expression="$func:oauthConsumerKey" scope="default" type="STRING"/>
         <property name="tumblr.oauth.consumerSecret" expression="$func:oauthConsumerSecret" scope="default" type="STRING"/>
         <property name="tumblr.oauth.accessToken" expression="$func:oauthAccessToken" scope="default" type="STRING"/>
-        <property name="tumblr.oauth.accessSecret" expression="$func:oauthAccessTokenSecret" scope="default" type="STRING"/>      
-        
-        <log level="custom">
-        	<property name="OAUTH_CONSUMER_KEY" expression="get-property('tumblr.oauth.consumerKey')"/>
-        	<property name="OAUTH_CONSUMER_SECRET" expression="get-property('tumblr.oauth.consumerSecret')"/>
-            <property name="OAUTH_ACCESS_TOKEN" expression="get-property('tumblr.oauth.accessToken')"/>
-            <property name="OAUTH_ACCESS_SECRET" expression="get-property('tumblr.oauth.accessSecret')"/>
-        </log>
-        
+        <property name="tumblr.oauth.accessSecret" expression="$func:oauthAccessTokenSecret" scope="default" type="STRING"/>        
         
         <!-- Create GET url -->
         <property name="tumblr.url.userInfo" value="http://api.tumblr.com/v2/user/info"/>

@@ -5,7 +5,7 @@
     "consumerSecret":"%s(consumerSecret)",
     "accessToken":"%s(accessToken)",
     "tokenSecret":"%s(tokenSecret)",
-    "postId":"%s(esbLikePostId)", 
+    "postId":"%s(wrongPostId)", 
     "reblogKey":"%s(esbLikeReblogKey)" 
     }
 }
