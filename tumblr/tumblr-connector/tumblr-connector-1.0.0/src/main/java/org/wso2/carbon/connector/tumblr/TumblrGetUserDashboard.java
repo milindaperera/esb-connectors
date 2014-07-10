@@ -1,3 +1,21 @@
+/*
+ * Copyright (c) 2005-2014, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ * 
+ * WSO2 Inc. licenses this file to you under the Apache License,
+ * Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 package org.wso2.carbon.connector.tumblr;
 
 import org.apache.synapse.MessageContext;
@@ -34,26 +52,26 @@ public class TumblrGetUserDashboard extends AbstractConnector {
 		requestMsg.addHeader("Content-Type", "application/x-www-form-urlencoded");
 				
 		//setting query parameters in the http message body
-		if (limitParam != null){
+		if (limitParam != null && limitParam.isEmpty() == false){
 			requestMsg.addQuerystringParameter("limit", limitParam);
 		}
-		if (offsetParam != null){
+		if (offsetParam != null && offsetParam.isEmpty() == false){
 			requestMsg.addQuerystringParameter("offset", offsetParam);
 		}
 		
-		if (typeParam != null){
+		if (typeParam != null && typeParam.isEmpty() == false){
 			requestMsg.addQuerystringParameter("type", typeParam);
 		}
 		
-		if (sinceIdParam != null){
+		if (sinceIdParam != null && sinceIdParam.isEmpty() == false){
 			requestMsg.addQuerystringParameter("since_id", sinceIdParam);
 		}
 		
-		if (needReblogInfoParam != null){
+		if (needReblogInfoParam != null && needNoteInfoParam.isEmpty() == false){
 			requestMsg.addQuerystringParameter("reblog_info", needReblogInfoParam);
 		}
 		
-		if (needNoteInfoParam != null){
+		if (needNoteInfoParam != null && needNoteInfoParam.isEmpty() == false){
 			requestMsg.addQuerystringParameter("notes_info", needNoteInfoParam);
 		}
 		

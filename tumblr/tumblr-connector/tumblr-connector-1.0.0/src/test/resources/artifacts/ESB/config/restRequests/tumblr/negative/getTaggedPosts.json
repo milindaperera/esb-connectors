@@ -2,6 +2,6 @@
     {
     "operation":"getTaggedPosts",
     "consumerKey":"%s(consumerKey)",
-    "postTag":"%s(postTag)"
+    "postTag":""
     }
 }

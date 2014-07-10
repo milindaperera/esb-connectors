@@ -35,6 +35,16 @@
             <property name="request.baseHostUrl" expression="json-eval($.json_request.baseHostUrl)"/>
             
             <property name="request.avatarSize" expression="json-eval($.json_request.size)"/>
+            <property name="request.reblog_info" expression="json-eval($.json_request.reblog_info)"/>
+            <property name="request.notes_info" expression="json-eval($.json_request.notes_info)"/>
+            <property name="request.filter" expression="json-eval($.json_request.filter)"/>
+            
+            <property name="request.beforeId" expression="json-eval($.json_request.before_id)"/>
+            
+            <property name="request.state" expression="json-eval($.json_request.state)"/>
+            <property name="request.tweet" expression="json-eval($.json_request.tweet)"/>
+            <property name="request.format" expression="json-eval($.json_request.format)"/>
+            <property name="request.slug" expression="json-eval($.json_request.slug)"/>
             
             <property name="request.postType" expression="json-eval($.json_request.postType)"/>
             <property name="request.postBody" expression="json-eval($.json_request.postBody)"/>
@@ -45,6 +55,8 @@
             <property name="request.postId" expression="json-eval($.json_request.postId)"/>
             <property name="request.reblogKey" expression="json-eval($.json_request.reblogKey)"/>
             <property name="request.postComment" expression="json-eval($.json_request.postComment)"/>
+            
+            <property name="request.since_id" expression="json-eval($.json_request.since_id)"/>
             
             <property name="request.followBlog" expression="json-eval($.json_request.followBlog)"/>
             
@@ -64,11 +76,21 @@
             	</case>
             	
             	<case regex="getFollowers">
-            		<tumblr.getFollowers/>
+            		<tumblr.getFollowers>
+						<offset>{$ctx:request.offset}</offset>
+						<limit>{$ctx:request.limit}</limit>
+					</tumblr.getFollowers>
             	</case>
             	
             	<case regex="createPost">
             		<tumblr.createPost>
+            		 <postType>text</postType>
+						<postState>{$ctx:request.state}</postState>
+						<postTags>{$ctx:request.tag}</postTags>
+						<postTweet>{$ctx:request.tweet}</postTweet>
+						<postFormat>{$ctx:request.format}</postFormat>
+						<postSlug>{$ctx:request.slug}</postSlug>
+						
 						<postType>{$ctx:request.postType}</postType>
 						<postBody>{$ctx:request.postBody}</postBody>
 					</tumblr.createPost>
@@ -78,11 +100,11 @@
             		<tumblr.editPost>
 						<postId>{$ctx:request.postId}</postId>
 						<postType>{$ctx:request.postType}</postType>
-						<postState></postState>
-						<postTags></postTags>
-						<postTweet></postTweet>
-						<postFormat></postFormat>
-						<postSlug></postSlug>
+						<postState>{$ctx:request.state}</postState>
+						<postTags>{$ctx:request.tag}</postTags>
+						<postTweet>{$ctx:request.tweet}</postTweet>
+						<postFormat>{$ctx:request.format}</postFormat>
+						<postSlug>{$ctx:request.slug}</postSlug>
 						<postBody>{$ctx:request.postBody}</postBody>
 						
 					</tumblr.editPost>
@@ -94,11 +116,11 @@
 						<postReblogKey>{$ctx:request.reblogKey}</postReblogKey>
 						<postComment>{$ctx:request.postComment}</postComment>
 						<postType>{$ctx:request.postType}</postType>
-						<postState></postState>
-						<postTags></postTags>
-						<postTweet></postTweet>
-						<postFormat></postFormat>
-						<postSlug></postSlug>
+						<postState>{$ctx:request.state}</postState>
+						<postTags>{$ctx:request.tag}</postTags>
+						<postTweet>{$ctx:request.tweet}</postTweet>
+						<postFormat>{$ctx:request.format}</postFormat>
+						<postSlug>{$ctx:request.slug}</postSlug>
 					
 					</tumblr.reblogPost>
             	</case>
@@ -119,25 +141,30 @@
             	
             	<case regex="getPosts">
             		<tumblr.getPosts>
-						<baseHostUrl></baseHostUrl>
-						<type></type>
+						<baseHostUrl>{$ctx:request.baseHostUrl}</baseHostUrl>
+						<type>{$ctx:request.postType}</type>
 						<id>{$ctx:request.postId}</id>
-						<tag></tag>
-						<limit></limit>
-						<offset></offset>
-						<needReblogInfo></needReblogInfo>
-						<needNoteInfo></needNoteInfo>
-						<filter></filter>
+						<tag>{$ctx:request.tag}</tag>
+						<limit>{$ctx:request.limit}</limit>
+						<offset>{$ctx:request.offset}</offset>
+						<needReblogInfo>{$ctx:request.reblog_info}</needReblogInfo>
+						<needNoteInfo>{$ctx:request.notes_info}</needNoteInfo>
+						<filter>{$ctx:request.filter}</filter>
 					</tumblr.getPosts>
             	</case>
             	
             	<case regex="getQueuedPosts">
             		<tumblr.getQueuedPosts>
+						<offset>{$ctx:request.offset}</offset>
+						<limit>{$ctx:request.limit}</limit>
+						<filter>{$ctx:request.filter}</filter>
 					</tumblr.getQueuedPosts>
             	</case>
             	
             	<case regex="getDraftedPosts">
             		<tumblr.getDraftedPosts>
+						<beforeId>{$ctx:request.beforeId}</beforeId>
+						<filter>{$ctx:request.filter}</filter>
 					</tumblr.getDraftedPosts>
             	</case>
             	
@@ -153,26 +180,26 @@
             	
             	<case regex="getUserDashboard">
             		<tumblr.getUserDashBoard>
-						<offset></offset>
-						<limit></limit>
-						<type></type>
-						<sinceId></sinceId>
-						<needReblogInfo></needReblogInfo>
-						<needNoteInfo></needNoteInfo>
+						<offset>{$ctx:request.offset}</offset>
+						<limit>{$ctx:request.limit}</limit>
+						<type>{$ctx:request.postType}</type>
+						<sinceId>{$ctx:request.since_id}</sinceId>
+						<needReblogInfo>{$ctx:request.reblog_info}</needReblogInfo>
+						<needNoteInfo>{$ctx:request.notes_info}</needNoteInfo>
 					</tumblr.getUserDashBoard>
             	</case>
             	
             	<case regex="getLikes">
             		<tumblr.getLikes>
-						<offset></offset>
-						<limit></limit>
+						<offset>{$ctx:request.offset}</offset>
+						<limit>{$ctx:request.limit}</limit>
 					</tumblr.getLikes>
             	</case>
             	
             	<case regex="getFollowing">
             		<tumblr.getFollowing>
-						<offset></offset>
-						<limit></limit>
+						<offset>{$ctx:request.offset}</offset>
+						<limit>{$ctx:request.limit}</limit>
 					</tumblr.getFollowing>
             	</case>
             	

@@ -12,33 +12,32 @@
 		<property name="tumblr.oauth.consumerKey" expression="$func:oauthConsumerKey" scope="default" type="STRING"/>
         <property name="uri.var.baseHostUrl" expression="$func:baseHostUrl" scope="default" type="STRING"/>
         <property name="uri.var.limit" expression="$func:limit" scope="default" type="STRING"/>
-        <property name="uri.var.offset" expression="$func:offset" scope="default" type="STRING"/>
+        <property name="uri.var.offset" expression="$func:offset" scope="default" type="STRING"/>  
         
-        <log level="custom">
-        	<property name="OAUTH_CONSUMER_KEY" expression="get-property('tumblr.oauth.consumerKey')"/>
-        	<property name="BASE_HOST_URL" expression="get-property('uri.var.baseHostUrl')"/>           
-        </log>   
+        <property name="uri.var.finalUrl" expression="fn:concat('http://api.tumblr.com/v2/blog/', 
+        														get-property('uri.var.baseHostUrl'),
+        														'/likes?api_key=',
+        														get-property('tumblr.oauth.consumerKey'))"/>
         
-        <filter xpath="get-property('uri.var.limit') = '' or  (not(string(get-property('uri.var.limit'))))">
+        <filter xpath="not(get-property('uri.var.limit') = '' or  (not(string(get-property('uri.var.limit')))))">
         	<then>
-        		<property name="uri.var.limit" value="20" scope="default" type="STRING"/>
+        		<property name="uri.var.finalUrl" expression="fn:concat(get-property('uri.var.finalUrl'),
+        																'&amp;limit=', 
+        																get-property('uri.var.limit'))"/>
         	</then>
         </filter>
-        <filter xpath="get-property('uri.var.offset') = '' or  (not(string(get-property('uri.var.offset'))))">
+        <filter xpath="not(get-property('uri.var.offset') = '' or  (not(string(get-property('uri.var.offset')))))">
         	<then>
-        		<property name="uri.var.offset" value="0" scope="default" type="STRING"/>
+        		<property name="uri.var.finalUrl" expression="fn:concat(get-property('uri.var.finalUrl'),
+        																'&amp;offset=', 
+        																get-property('uri.var.offset'))"/>
         	</then>
         </filter>
-        
-        <!-- <property name="messageType" value="application/x-www-form-urlencoded" scope="axis2" /> -->
-        
-        <!-- Create tumblr rest endpoint uri api key param -->
-        <property name="uri.var.apiKey" expression="get-property('tumblr.oauth.consumerKey')"/>
         
         <call>
 	        <endpoint>
 	        	<http method="GET" 
-	        			uri-template="http://api.tumblr.com/v2/blog/{uri.var.baseHostUrl}/likes?api_key={uri.var.apiKey}&amp;limit={uri.var.limit}&amp;offset={uri.var.offset}"/>
+	        			uri-template="{uri.var.finalUrl}"/>
 	        </endpoint>
 	    </call>
         

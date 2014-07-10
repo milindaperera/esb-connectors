@@ -7,7 +7,7 @@
 	<sequence>
 	
         <property name="uri.var.baseHostUrl" expression="$func:baseHostUrl" scope="default" type="STRING"/>
-        <property name="uri.var.size" expression="$func:baseHostUrl" scope="default" type="STRING"/>        
+        <property name="uri.var.size" expression="$func:size" scope="default" type="STRING"/>        
         
         <!-- <property name="Accept" value="application/json" scope="transport"/> -->
         

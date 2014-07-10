@@ -75,21 +75,21 @@
         <filter xpath="not(get-property('uri.var.needReblogInfo') = '' or  (not(string(get-property('uri.var.needReblogInfo')))))">
         	<then>
         		<property name="uri.var.finalUrl" expression="fn:concat(get-property('uri.var.finalUrl'),
-        																'&amp;offset=', 
+        																'&amp;reblog_info=', 
         																get-property('uri.var.needReblogInfo'))"/>
         	</then>
         </filter>
         <filter xpath="not(get-property('uri.var.needNoteInfo') = '' or  (not(string(get-property('uri.var.needNoteInfo')))))">
         	<then>
         		<property name="uri.var.finalUrl" expression="fn:concat(get-property('uri.var.finalUrl'),
-        																'&amp;offset=', 
+        																'&amp;notes_info=', 
         																get-property('uri.var.needNoteInfo'))"/>
         	</then>
         </filter>
         <filter xpath="not(get-property('uri.var.filter') = '' or  (not(string(get-property('uri.var.filter')))))">
         	<then>
         		<property name="uri.var.finalUrl" expression="fn:concat(get-property('uri.var.finalUrl'),
-        																'&amp;offset=', 
+        																'&amp;filter=', 
         																get-property('uri.var.filter'))"/>
         	</then>
         </filter>

@@ -23,10 +23,9 @@ package org.wso2.carbon.connector.integration.test.common;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.scribe.builder.ServiceBuilder;
@@ -41,8 +40,6 @@ import org.scribe.oauth.OAuthService;
 
 
 public class ConnectorIntegrationUtil {
-
-	private static Log log = LogFactory.getLog(ConnectorIntegrationUtil.class);
 	
     public static String DirectHttpGET(String targetUrl){
     	
@@ -84,7 +81,7 @@ public class ConnectorIntegrationUtil {
 		OAuthRequest requestMsg = new OAuthRequest(Verb.GET, targetUrl);
 		
 		//update content type
-		requestMsg.addHeader("Content-Type", "application/x-www-form-urlencoded");
+		//requestMsg.addHeader("Content-Type", "application/x-www-form-urlencoded");
 		
 		if(queryParams != null){
 	    	Set set = queryParams.entrySet();

@@ -106,9 +106,6 @@
 				<property name="tumblr.param.embed" expression="$func:postEmbed" scope="default" type="STRING"/>
 				
 			</case>
-			<default>
-				<!-- TODO   :   HANDLE DEFAULT OTHERWISE WILL CREATE ERROR  -->
-			</default>
 		</switch>        
         
         <class name="org.wso2.carbon.connector.tumblr.TumblrCreatePost"/>  

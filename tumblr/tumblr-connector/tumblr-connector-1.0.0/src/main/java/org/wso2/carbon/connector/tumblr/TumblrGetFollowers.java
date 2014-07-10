@@ -1,3 +1,21 @@
+/*
+ * Copyright (c) 2005-2014, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ * 
+ * WSO2 Inc. licenses this file to you under the Apache License,
+ * Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 package org.wso2.carbon.connector.tumblr;
 
 import org.apache.synapse.MessageContext;
@@ -43,17 +61,14 @@ public class TumblrGetFollowers extends AbstractConnector {
 		requestMsg = TumblrUtils.signOAuthRequestGeneric(requestMsg, consumerKey, consumerSecret, 
 																			accessToken, tokenSecret);
 		
-		// TODO change log to debug log level
 		log.debug("REQUEST TO TUMBLR : Header - " +requestMsg.getHeaders());
 		log.debug("REQUEST TO TUMBLR : Body - " +requestMsg.getBodyContents());
 		
 		
-		// TODO change log to debug log level
 		log.debug("SENDING REQUEST TO TUMBLR : " +destUrl);
 		
 		Response response = requestMsg.send();
 		
-		// TODO change log to debug log level
 		log.debug("RECEIVED RESPONSE FROM TUMBLR : Header - " +response.getHeaders());
 		log.debug("RECEIVED RESPONSE FROM TUMBLR : Body - " +response.getBody());
 

@@ -1,3 +1,21 @@
+/*
+ * Copyright (c) 2005-2014, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ * 
+ * WSO2 Inc. licenses this file to you under the Apache License,
+ * Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
 package org.wso2.carbon.connector.tumblr;
 
 import org.apache.commons.logging.Log;
@@ -26,8 +44,7 @@ public class TumblrCreatePost extends AbstractConnector {
 	
 		//Retrieving parameter values from the message context
 		//----Common post parameters
-		String typeParam = "";
-		typeParam = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_PARAMETER_TYPE);
+		String typeParam = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_PARAMETER_TYPE);
 		String stateParam = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_PARAMETER_STATE);
 		String tagsParam = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_PARAMETER_TAGS);
 		String tweetParam = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_PARAMETER_TWEET);
@@ -44,120 +61,121 @@ public class TumblrCreatePost extends AbstractConnector {
 		//setting query parameters in the http message 
 		requestMsg.addBodyParameter("type", typeParam);
 		
-		if (stateParam != null){
+		if (stateParam != null && stateParam.isEmpty() == false){
 			requestMsg.addBodyParameter("state", stateParam);
 		}
 		
 		
-		if (tagsParam != null){
+		if (tagsParam != null && tagsParam.isEmpty() == false){
 			requestMsg.addBodyParameter("tags", tagsParam);
 		}
 		
-		if (tweetParam != null){
+		if (tweetParam != null && tweetParam.isEmpty() == false){
 			requestMsg.addBodyParameter("tweet", tweetParam);
 		}
 		
-		if (formatParam != null){
+		if (formatParam != null && formatParam.isEmpty() == false){
 			requestMsg.addBodyParameter("format", formatParam);
 		}
 		
 		
-		if (slugParam != null){
+		if (slugParam != null && slugParam.isEmpty() == false){
 			requestMsg.addBodyParameter("slug", slugParam);
 		}
 		
 		//----Specialized post parameters
-		if (typeParam.equals("text")){
-			
-			log.debug("CREATING TEXT POST");
-			
-			String titleParam = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_PARAMETER_TITLE);
-			if (titleParam != null){
-				requestMsg.addBodyParameter("title", titleParam);
+		if (typeParam != null){
+			if (typeParam.equals("text")){
+				
+				log.debug("CREATING TEXT POST");
+				
+				String titleParam = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_PARAMETER_TITLE);
+				if (titleParam != null){
+					requestMsg.addBodyParameter("title", titleParam);
+				}
+				
+				String bodyParam = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_PARAMETER_BODY);
+				if (bodyParam != null){
+					requestMsg.addBodyParameter("body", bodyParam);
+				}
+				
+			}else if (typeParam.equals("quote")){
+				
+				log.debug("CREATING QUOTE POST");
+				
+				String quoteParam = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_PARAMETER_QUOTE);
+				if (quoteParam != null){
+					requestMsg.addBodyParameter("quote", quoteParam);
+				}
+				String soureParam = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_PARAMETER_SOURCE);
+				if (soureParam != null){
+					requestMsg.addBodyParameter("source", soureParam);
+				}
+				
+			}else if (typeParam.equals("link")){
+				
+				log.debug("CREATING LINK POST");
+				
+				String titleParam = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_PARAMETER_TITLE);
+				if (titleParam != null){
+					requestMsg.addBodyParameter("title", titleParam);
+				}
+				
+				String urlParam = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_PARAMETER_SOURCE);
+				if (urlParam != null){
+					requestMsg.addBodyParameter("url", urlParam);
+				}
+				
+				String descriptionParam = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_PARAMETER_DESCRIPTION);
+				if (descriptionParam != null){
+					requestMsg.addBodyParameter("description", descriptionParam);
+				}
+				
+			}else if (typeParam.equals("chat")){
+				
+				log.debug("CREATING CHAT POST");
+				
+				String titleParam = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_PARAMETER_TITLE);
+				if (titleParam != null){
+					requestMsg.addBodyParameter("title", titleParam);
+				}
+				
+				String conversationParam = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_PARAMETER_CONVERSATION);
+				if (conversationParam != null){
+					requestMsg.addBodyParameter("conversation", conversationParam);
+				}
+				
+			}else if (typeParam.equals("audio")){
+				
+				log.debug("CREATING AUDIO POST");
+				
+				String captionParam = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_PARAMETER_CAPTION);
+				if (captionParam != null){
+					requestMsg.addBodyParameter("caption", captionParam);
+				}
+				
+				String external_urlParam = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_PARAMETER_SOURCE);
+				if (external_urlParam != null){
+					requestMsg.addBodyParameter("external_url", external_urlParam);
+				}
+				
+			}else if (typeParam.equals("video")){
+				
+				log.debug("CREATING VIDEO POST");
+				
+				String captionParam = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_PARAMETER_CAPTION);
+				if (captionParam != null){
+					requestMsg.addBodyParameter("caption", captionParam);
+				}
+				
+				String embedParam = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_PARAMETER_EMBED);
+				if (embedParam != null){
+					requestMsg.addBodyParameter("embed", embedParam);
+				}
+				
+				
 			}
-			
-			String bodyParam = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_PARAMETER_BODY);
-			if (bodyParam != null){
-				requestMsg.addBodyParameter("body", bodyParam);
-			}
-			
-		}else if (typeParam.equals("quote")){
-			
-			log.debug("CREATING QUOTE POST");
-			
-			String quoteParam = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_PARAMETER_QUOTE);
-			if (quoteParam != null){
-				requestMsg.addBodyParameter("quote", quoteParam);
-			}
-			String soureParam = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_PARAMETER_SOURCE);
-			if (soureParam != null){
-				requestMsg.addBodyParameter("source", soureParam);
-			}
-			
-		}else if (typeParam.equals("link")){
-			
-			log.debug("CREATING LINK POST");
-			
-			String titleParam = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_PARAMETER_TITLE);
-			if (titleParam != null){
-				requestMsg.addBodyParameter("title", titleParam);
-			}
-			
-			String urlParam = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_PARAMETER_SOURCE);
-			if (urlParam != null){
-				requestMsg.addBodyParameter("url", urlParam);
-			}
-			
-			String descriptionParam = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_PARAMETER_DESCRIPTION);
-			if (descriptionParam != null){
-				requestMsg.addBodyParameter("description", descriptionParam);
-			}
-			
-		}else if (typeParam.equals("chat")){
-			
-			log.debug("CREATING CHAT POST");
-			
-			String titleParam = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_PARAMETER_TITLE);
-			if (titleParam != null){
-				requestMsg.addBodyParameter("title", titleParam);
-			}
-			
-			String conversationParam = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_PARAMETER_CONVERSATION);
-			if (conversationParam != null){
-				requestMsg.addBodyParameter("conversation", conversationParam);
-			}
-			
-		}else if (typeParam.equals("audio")){
-			
-			log.debug("CREATING AUDIO POST");
-			
-			String captionParam = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_PARAMETER_CAPTION);
-			if (captionParam != null){
-				requestMsg.addBodyParameter("caption", captionParam);
-			}
-			
-			String external_urlParam = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_PARAMETER_SOURCE);
-			if (external_urlParam != null){
-				requestMsg.addBodyParameter("external_url", external_urlParam);
-			}
-			
-		}else if (typeParam.equals("video")){
-			
-			log.debug("CREATING VIDEO POST");
-			
-			String captionParam = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_PARAMETER_CAPTION);
-			if (captionParam != null){
-				requestMsg.addBodyParameter("caption", captionParam);
-			}
-			
-			String embedParam = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_PARAMETER_EMBED);
-			if (embedParam != null){
-				requestMsg.addBodyParameter("embed", embedParam);
-			}
-			
-			
 		}
-		
 		//sign the http request message for OAuth 1.0a
 		requestMsg = TumblrUtils.signOAuthRequestGeneric(requestMsg, consumerKey, consumerSecret, 
 																			accessToken, tokenSecret);

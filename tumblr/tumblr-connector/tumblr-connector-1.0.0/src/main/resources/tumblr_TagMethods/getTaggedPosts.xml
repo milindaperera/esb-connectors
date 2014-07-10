@@ -48,7 +48,7 @@
         <filter xpath="not(get-property('uri.var.filter') = '' or  (not(string(get-property('uri.var.filter')))))">
         	<then>
         		<property name="uri.var.finalUrl" expression="fn:concat(get-property('uri.var.finalUrl'),
-        																'&amp;offset=', 
+        																'&amp;filter=', 
         																get-property('uri.var.filter'))"/>
         	</then>
         </filter>
