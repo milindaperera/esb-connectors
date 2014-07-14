@@ -40,6 +40,7 @@ public class TumblrConstants {
 	public static final String TUMBLR_URL_UNFOLLOW = "tumblr.url.unFollow";
 	public static final String TUMBLR_URL_LIKE = "tumblr.url.like";
 	public static final String TUMBLR_URL_UNLIKE = "tumblr.url.unlike";
+	public static final String TUMBLR_URL_SUBMISSIONS = "tumblr.url.submissions";
 	
 	public static final String TUMBLR_PARAMETER_OFFSET 		= "tumblr.param.offset"; // used for  get queued posts, dashboard, likes
 	public static final String TUMBLR_PARAMETER_LIMIT 		= "tumblr.param.limit"; // used for  get queued posts, dashboard, likes

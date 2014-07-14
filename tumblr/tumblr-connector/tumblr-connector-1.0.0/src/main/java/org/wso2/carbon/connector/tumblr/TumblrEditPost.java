@@ -87,8 +87,9 @@ public class TumblrEditPost extends AbstractConnector {
 		if(typeParam != null){
 			if (typeParam.equals("text")){
 				
-				log.debug("CREATING TEXT POST");
-				
+				if (log.isDebugEnabled()){
+					log.info("CREATING TEXT POST");
+				}
 				String titleParam = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_PARAMETER_TITLE);
 				if (titleParam != null){
 					requestMsg.addBodyParameter("title", titleParam);
@@ -101,8 +102,9 @@ public class TumblrEditPost extends AbstractConnector {
 				
 			}else if (typeParam.equals("quote")){
 				
-				log.debug("CREATING QUOTE POST");
-				
+				if (log.isDebugEnabled()){
+					log.info("CREATING QUOTE POST");
+				}
 				String quoteParam = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_PARAMETER_QUOTE);
 				if (quoteParam != null){
 					requestMsg.addBodyParameter("quote", quoteParam);
@@ -114,8 +116,9 @@ public class TumblrEditPost extends AbstractConnector {
 				
 			}else if (typeParam.equals("link")){
 				
-				log.debug("CREATING LINK POST");
-				
+				if (log.isDebugEnabled()){
+					log.info("CREATING LINK POST");
+				}
 				String titleParam = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_PARAMETER_TITLE);
 				if (titleParam != null){
 					requestMsg.addBodyParameter("title", titleParam);
@@ -133,8 +136,9 @@ public class TumblrEditPost extends AbstractConnector {
 				
 			}else if (typeParam.equals("chat")){
 				
-				log.debug("CREATING CHAT POST");
-				
+				if (log.isDebugEnabled()){
+					log.info("CREATING CHAT POST");
+				}
 				String titleParam = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_PARAMETER_TITLE);
 				if (titleParam != null){
 					requestMsg.addBodyParameter("title", titleParam);
@@ -147,8 +151,9 @@ public class TumblrEditPost extends AbstractConnector {
 				
 			}else if (typeParam.equals("audio")){
 				
-				log.debug("CREATING AUDIO POST");
-				
+				if (log.isDebugEnabled()){
+					log.info("CREATING AUDIO POST");
+				}
 				String captionParam = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_PARAMETER_CAPTION);
 				if (captionParam != null){
 					requestMsg.addBodyParameter("caption", captionParam);
@@ -161,8 +166,9 @@ public class TumblrEditPost extends AbstractConnector {
 				
 			}else if (typeParam.equals("video")){
 				
-				log.debug("CREATING VIDEO POST");
-				
+				if (log.isDebugEnabled()){
+					log.info("CREATING VIDEO POST");
+				}
 				String captionParam = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_PARAMETER_CAPTION);
 				if (captionParam != null){
 					requestMsg.addBodyParameter("caption", captionParam);
@@ -180,16 +186,19 @@ public class TumblrEditPost extends AbstractConnector {
 		requestMsg = TumblrUtils.signOAuthRequestGeneric(requestMsg, consumerKey, consumerSecret, 
 																			accessToken, tokenSecret);
 		
-		log.debug("REQUEST TO TUMBLR : Header - " +requestMsg.getHeaders());
-		log.debug("REQUEST TO TUMBLR : Body - " +requestMsg.getBodyContents());
 		
 		
-		log.debug("SENDING REQUEST TO TUMBLR : " +destUrl);
 		
 		Response response = requestMsg.send();
 		
-		log.debug("RECEIVED RESPONSE FROM TUMBLR : Header - " +response.getHeaders());
-		log.debug("RECEIVED RESPONSE FROM TUMBLR : Body - " +response.getBody());
+		if (log.isDebugEnabled()){
+			log.info("REQUEST TO TUMBLR : Header - " +requestMsg.getHeaders());
+			log.info("REQUEST TO TUMBLR : Body - " +requestMsg.getBodyContents());
+			log.info("SENDING REQUEST TO TUMBLR : " +destUrl);
+			log.info("RECEIVED RESPONSE FROM TUMBLR : Header - " +response.getHeaders());
+			log.info("RECEIVED RESPONSE FROM TUMBLR : Body - " +response.getBody());
+		}
+		
 
 		//update message payload in message context
 		msgCtxt.setProperty("tumblr.response", response.getBody());

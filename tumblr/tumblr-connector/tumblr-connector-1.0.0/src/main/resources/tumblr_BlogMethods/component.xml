@@ -47,6 +47,12 @@
 					Operation to retrieve drafted posts of the blog associated with oauth credentials (require OAuth 1.0a authentication)
 				</description>
 		</component>
+		<component name="getSubmissions">
+				<file>getSubmissions.xml</file>
+				<description>
+					Operation to retrieve submited posts of the blog associated with oauth credentials (require OAuth 1.0a authentication)
+				</description>
+		</component>
 		<component name="getAvatar">
 				<file>getAvatar.xml</file>
 				<description>Retrieve avatar of specified blog</description>

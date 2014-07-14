@@ -68,5 +68,11 @@ STEPS:
       					$ mvn clean install
 	  					
 	  					
-	  	
+	NOTE: Following Tumblr account can be used for integration test
+		Email: tumblresbconnector@gmail.com
+		Password: wso2esbconnector
+		OAuth Consumer Key / Api key:34Fu9sc1XV012BEolDuTZcD5ykY6Zz18nJ1yWgD4qpW71IZs5t
+		Consumer Secret Key:  0dgqsbhlXnVXdrnCFkBvscTAEEnxmqIsJbYUJaFPIbwuYOTb2M
+		Access Token: DTGDykJO9PkKVeeCFt4LfNOuegcnQjwct7QZd63ejKFzbHgrsx
+		Access token secret: KZeu3jshegCrbgZ6sgOCQDnLz8c7M2DiAPUvJ4h7AKvCoeXW1V
 

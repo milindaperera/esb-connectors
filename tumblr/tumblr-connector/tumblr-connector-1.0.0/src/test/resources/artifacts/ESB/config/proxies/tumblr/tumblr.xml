@@ -169,6 +169,13 @@
 					</tumblr.getDraftedPosts>
             	</case>
             	
+            	<case regex="getSubmissions">
+					<tumblr.getSubmissions>
+						<offset>{$ctx:request.offset}</offset>
+						<filter>{$ctx:request.filter}</filter>
+					</tumblr.getSubmissions>
+            	</case>
+            	
             	<case regex="deletePost">
             		<tumblr.deletePost>
 						<postId>{$ctx:request.postId}</postId>
