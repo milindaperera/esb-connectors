@@ -41,7 +41,7 @@ public class TumblrGetUserInfo extends AbstractConnector {
 		OAuthRequest requestMsg = new OAuthRequest(Verb.GET, destUrl);
 		
 		//update content type
-		requestMsg.addHeader("Content-Type", "application/x-www-form-urlencoded");
+		//requestMsg.addHeader("Content-Type", "application/x-www-form-urlencoded");
 				
 		//sign the http request message for OAuth 1.0a
 		requestMsg = TumblrUtils.signOAuthRequestGeneric(requestMsg, consumerKey, consumerSecret, 

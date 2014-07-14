@@ -2,6 +2,8 @@
     {
     "operation":"getTaggedPosts",
     "consumerKey":"%s(consumerKey)",
-    "postTag":"%s(postTag)"
+    "postTag":"%s(postTag)",
+    "limit":"2",
+    "offset":"2"
     }
 }

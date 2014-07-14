@@ -48,7 +48,7 @@ public class TumblrGetDrafts extends AbstractConnector {
 		OAuthRequest requestMsg = new OAuthRequest(Verb.GET, destUrl);
 		
 		//update content type
-		requestMsg.addHeader("Content-Type", "application/x-www-form-urlencoded");
+		//requestMsg.addHeader("Content-Type", "application/x-www-form-urlencoded");
 		
 		//setting query parameters in the http message body
 		if (beforeIdParam != null && beforeIdParam.isEmpty() == false){

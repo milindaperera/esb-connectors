@@ -6,7 +6,7 @@
     "accessToken":"%s(accessToken)",
     "tokenSecret":"%s(tokenSecret)",
     "baseHostUrl":"%s(blogHostUrl)",
-    "state":"draft",
+    "state":"queue",
     "postTag":"optionalTestESB",
     "tweet":"optional tweet",
     "format":"html",

@@ -28,6 +28,7 @@ import org.apache.commons.logging.LogFactory;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import org.wso2.carbon.connector.integration.test.common.ConnectorIntegrationUtil;
@@ -59,7 +60,7 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
     }
 
 
-    @Override
+    @AfterClass(alwaysRun = true)
     protected void cleanup() {
         axis2Client.destroy();
     }
@@ -1213,6 +1214,47 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
         													directResponseJObj.get("meta").toString());
         Assert.assertEquals(esbRestResponse.getBody().get("response").toString(), 
         													directResponseJObj.get("response").toString());
+    }
+    
+    
+    /**
+     * Negative integration test case for getBlogLikes
+     * wrong consumer key
+     * @throws JSONException 
+     * @throws IOException 
+     */
+    @Test(priority = 5, groups = {"wso2.esb"}, description = "tumblr {getBlogLikes} integration negative test")
+    public void NegativeTestTumblrGetBlogLikes() throws JSONException, Exception {
+
+        String consumerKey = "wrong" + connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_KEY);
+        log.info("consumerKey : " + consumerKey);
+        
+        //Get Direct response from tumblr
+        String requestUrl = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_BASEAPIURL);
+        String targetBlogUrl = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_BLOGURL);
+        
+        requestUrl = requestUrl + "/" + targetBlogUrl + "/likes?api_key=" + consumerKey;
+        log.info("requestUrl : " + requestUrl);
+        
+        String directResponse = ConnectorIntegrationUtil.DirectHttpGET(requestUrl);
+        
+        
+        JSONObject directResponseJObj = new JSONObject(directResponse);
+        log.info("DirectResponse : " +directResponseJObj.get("meta").toString());
+        
+        //Get response using the connector
+        log.info("Proxy service url :" + getProxyServiceURL("tumblr"));
+        
+
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURL("tumblr"), 
+        									"POST", esbRequestHeadersMap,  "negative/getBlogLikes.json");
+        
+         
+        //String connectorResponse = ConnectorIntegrationUtil.ConnectorHttpPOST("", getProxyServiceURL("tumblr"));
+        log.info("Connector response : " +esbRestResponse.getBody().get("meta").toString());
+        
+        Assert.assertEquals(esbRestResponse.getBody().get("meta").toString(), directResponseJObj.get("meta").toString());
+        Assert.assertEquals(esbRestResponse.getBody().get("response").toString(), directResponseJObj.get("response").toString());
     }
     
     
@@ -2617,7 +2659,7 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
         
         HashMap<String, String> params = new HashMap<String, String>();
         
-        params.put("state", "draft");
+        params.put("state", "queue");
         params.put("tags", "optionalTest");
         params.put("tweet", "optional tweet");
         params.put("format", "html");
@@ -2692,7 +2734,7 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
         
         params.put("type", "text");
         params.put("id", createdOptionalTextPostID);
-        params.put("state", "draft");
+        params.put("state", "queue");
         params.put("tags", "optionalTestEdit");
         params.put("tweet", "optional tweet edit");
         params.put("format", "html");
@@ -2718,7 +2760,7 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
         											+ "\"baseHostUrl\":\"" 		+targetBlogUrl 	 +"\","
         											+ "\"postId\":\""           +connecterCreatedOptionalTextPostID +"\","
         											+ "\"postType\":\"text\","
-        											+ "\"state\":\"draft\","
+        											+ "\"state\":\"queue\","
         											+ "\"postTag\":\"optionalTestESBEdit\","
         											+ "\"tweet\":\"optional tweet\","
         											+ "\"format\":\"html\","
@@ -2772,7 +2814,7 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
         params.put("type", "text");
         params.put("id", reblogPostId);
         params.put("reblog_key", reblogKey);
-        params.put("state", "draft");
+        params.put("state", "queue");
         params.put("tags", "optionalTestReblog");
         params.put("tweet", "optional tweet edit");
         params.put("format", "html");
@@ -2800,7 +2842,7 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
         											+ "\"postId\":\""           +reblogPostId 	 +"\","
         											+ "\"reblogKey\":\""        +reblogKey 		 +"\","
         											+ "\"postType\":\"text\","
-        											+ "\"state\":\"draft\","
+        											+ "\"state\":\"queue\","
         											+ "\"postTag\":\"optionalTestESBReblog\","
         											+ "\"tweet\":\"optional reblog tweet\","
         											+ "\"format\":\"html\","
@@ -2998,7 +3040,45 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
     
     
 
-    
+    /**
+     * Positive integration test case for getTaggedPosts
+     * Use only mandatory parameters
+     * @throws JSONException 
+     * @throws IOException 
+     */
+    @Test(priority = 4, groups = {"wso2.esb"}, description = "tumblr {getTaggedPosts} integration positive test")
+    public void optionalTestTumblrGetTaggedPosts() throws IOException, JSONException{
+    	
+        String consumerKey = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_KEY);
+        log.info("consumerKey : " + consumerKey);
+        
+        String tag = connectorProperties.getProperty("postTag");
+        
+        //Get Direct response from tumblr
+        String requestUrl = "http://api.tumblr.com/v2/tagged?api_key=" + consumerKey +"&tag=" + tag
+        																+ "&limit=2&offset=2";
+        log.info("requestUrl : " + requestUrl);
+                
+        String directResponse = ConnectorIntegrationUtil.DirectHttpGET(requestUrl);
+        
+        JSONObject directResponseJObj = new JSONObject(directResponse);
+        log.info("ESB:" +directResponseJObj.get("meta").toString());
+
+        
+        //Get response using the connector
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURL("tumblr"), 
+        											"POST", esbRequestHeadersMap,  "optional/getTaggedPosts.json");
+        
+        log.info("ESB:" +esbRestResponse.getBody().get("meta").toString());
+        log.debug("ESB:" +esbRestResponse.getBody().get("response").toString());
+    	
+        Assert.assertEquals(esbRestResponse.getBody().get("meta").toString(), 
+        														directResponseJObj.get("meta").toString());
+        
+        Assert.assertEquals(esbRestResponse.getBody().get("response").toString(), 
+        														directResponseJObj.get("response").toString());
+        
+    }
     
     
     

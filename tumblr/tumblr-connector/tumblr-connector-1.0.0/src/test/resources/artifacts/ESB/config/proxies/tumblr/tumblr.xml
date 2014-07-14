@@ -61,6 +61,7 @@
             <property name="request.followBlog" expression="json-eval($.json_request.followBlog)"/>
             
             <property name="request.tag" expression="json-eval($.json_request.postTag)"/>
+            <property name="request.beforeTime" expression="json-eval($.json_request.before)"/>
             
             <tumblr.init>
                <oauthConsumerKey>{$ctx:request.consumerKey}</oauthConsumerKey>
@@ -229,9 +230,9 @@
             	<case regex="getTaggedPosts">
             		<tumblr.getTaggedPosts>
 						<tag>{$ctx:request.tag}</tag>
-						<before></before>
-						<limit></limit>
-						<filter></filter>
+						<before>{$ctx:request.beforeTime}</before>
+						<limit>{$ctx:request.limit}</limit>
+						<filter>{$ctx:request.offset}</filter>
 					</tumblr.getTaggedPosts>
             	</case>
             	<default>
