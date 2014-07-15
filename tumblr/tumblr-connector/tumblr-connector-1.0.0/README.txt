@@ -58,10 +58,10 @@ STEPS:
 	  					2. use api console https://api.tumblr.com/console/calls/blog/posts
 	  					
 	  		viii directLikeReblogKey - reblog key of a post	to test like operation
-	  		ix	 directLikePostId - post id of the post selected above in (viii)
-	  		x	 esbLikeReblogKey - reblog key of another post	to test like operation
-	  		xi	 esbLikePostId - post id of the post selected above in (x)
-	  		xii	 followBlogUrl - url of your favourite blog
+	  		ix   directLikePostId - post id of the post selected above in (viii)
+	  		x    esbLikeReblogKey - reblog key of another post	to test like operation
+	  		xi   esbLikePostId - post id of the post selected above in (x)
+	  		xii  followBlogUrl - url of your favourite blog
 	  		xiii postTag - a post tag to search
 	  		
 	4.	Navigate to "{TUMBLR_CONNECTOR_HOME}/tumblr-connector/tumblr-connector-1.0.0/" and run the following command.
