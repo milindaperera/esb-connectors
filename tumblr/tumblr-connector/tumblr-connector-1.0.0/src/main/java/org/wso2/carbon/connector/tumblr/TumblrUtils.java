@@ -33,53 +33,31 @@ import org.scribe.oauth.OAuthService;
 
 import org.apache.synapse.commons.json.JsonUtil;
 
+/**
+ * Class containing utility methods
+ */
 public class TumblrUtils {
-	
-	
-	 /**
+
+    /**
      * Method to sign generic OAuthRequest using provided credentialsfor OAuth 1.0a using Scrib library
      *
-     * @param request  			OAuthRequest to sign
-     * @param consumerKey   	Consumer key of the application
-     * @param consumerSecret	Consumer secret of the consumer key
-     * @param accessToken		Access token for protected resource
-     * @param tokenSecret		Token secret of the access token
-     *
+     * @param request        OAuthRequest to sign
+     * @param consumerKey    Consumer key of the application
+     * @param consumerSecret Consumer secret of the consumer key
+     * @param accessToken    Access token for protected resource
+     * @param tokenSecret    Token secret of the access token
      * @return Signed OAuthRequest
      */
-	public static OAuthRequest signOAuthRequestGeneric(OAuthRequest request, String consumerKey, 
-												String consumerSecret, String accessToken, 
-												String tokenSecret){
-		
-		OAuthService service = new ServiceBuilder().provider(TumblrApi.class)
-														.apiKey(consumerKey)
-														.apiSecret(consumerSecret)
-														.build();
-		
-		Token userAccessToken = new Token(accessToken, tokenSecret);
-		
-		service.signRequest(userAccessToken, request);
-		
-		return request;
-	}
-	
-	
-	
-	/**
-     * Method to add xml representation of json payload as response to given message context 
-     *
-     * @param msgContext  		Message context
-     * @param payLoad   		Json payload string which need to add to the message body 
-     * @param consumerSecret	Consumer secret of the consumer key
-     *
-     */
-	public static void addPayloadToMsgCntxt(MessageContext msgContext, String payLoad) throws AxisFault, OMException, Exception{
+    public static OAuthRequest signOAuthRequestGeneric(OAuthRequest request, String consumerKey,
+                                                       String consumerSecret, String accessToken,
+                                                       String tokenSecret) {
 
-		
-		OMElement ele = JsonUtil.toXml(new ByteArrayInputStream(payLoad.getBytes()), true);
-		SOAPBody soapMsgBody = msgContext.getEnvelope().getBody();
-		soapMsgBody.addChild(ele);
-		
-	}
-	
+        OAuthService service = new ServiceBuilder().provider(TumblrApi.class).apiKey(consumerKey).
+                                                                    apiSecret(consumerSecret).build();
+        Token userAccessToken = new Token(accessToken, tokenSecret);
+        service.signRequest(userAccessToken, request);
+
+        return request;
+    }
+
 }

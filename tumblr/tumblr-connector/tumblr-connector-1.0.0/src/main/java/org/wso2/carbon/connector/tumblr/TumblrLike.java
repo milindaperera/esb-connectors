@@ -27,45 +27,45 @@ import org.wso2.carbon.connector.core.ConnectException;
 
 public class TumblrLike extends AbstractConnector {
 
-	@Override
-	public void connect(MessageContext msgCtxt) throws ConnectException {
-		
-		String consumerKey = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_CONSUMER_KEY);
-		String consumerSecret = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_CONSUMER_SECRET);
-		String accessToken = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_ACCESS_TOKEN);
-		String tokenSecret = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_ACCESS_SECRET);
-		
-		String destUrl = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_URL_LIKE);
-		
-		String idParam = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_PARAMETER_ID);
-		String reblogIdParam = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_PARAMETER_REBLOGID);
-		
-		//new OAuth request message
-		OAuthRequest requestMsg = new OAuthRequest(Verb.POST, destUrl);
-		
-		//update content type
-		requestMsg.addHeader("Content-Type", "application/x-www-form-urlencoded");
-		
-		//setting query parameters in the http message body
-		requestMsg.addBodyParameter("id", idParam);
-		requestMsg.addBodyParameter("reblog_key", reblogIdParam);
-		
-		//sign the http request message for OAuth 1.0a
-		requestMsg = TumblrUtils.signOAuthRequestGeneric(requestMsg, consumerKey, consumerSecret, 
-																			accessToken, tokenSecret);
-		
-		Response response = requestMsg.send();
-		
-		if (log.isDebugEnabled()){
-			log.info("REQUEST TO TUMBLR : Header - " +requestMsg.getHeaders());
-			log.info("REQUEST TO TUMBLR : Body - " +requestMsg.getBodyContents());
-			log.info("SENDING REQUEST TO TUMBLR : " +destUrl);
-			log.info("RECEIVED RESPONSE FROM TUMBLR : Header - " +response.getHeaders());
-			log.info("RECEIVED RESPONSE FROM TUMBLR : Body - " +response.getBody());
-		}
-		//update message payload in message context
-		msgCtxt.setProperty("tumblr.response", response.getBody());
-		
-	}
+    @Override
+    public void connect(MessageContext msgCtxt) throws ConnectException {
+
+        String consumerKey = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_CONSUMER_KEY);
+        String consumerSecret = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_CONSUMER_SECRET);
+        String accessToken = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_ACCESS_TOKEN);
+        String tokenSecret = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_ACCESS_SECRET);
+
+        String destUrl = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_URL_LIKE);
+
+        String idParam = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_PARAMETER_ID);
+        String reblogIdParam = (String) msgCtxt.getProperty(TumblrConstants.TUMBLR_PARAMETER_REBLOGID);
+
+        //new OAuth request message
+        OAuthRequest requestMsg = new OAuthRequest(Verb.POST, destUrl);
+
+        //update content type
+        requestMsg.addHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        //setting query parameters in the http message body
+        requestMsg.addBodyParameter("id", idParam);
+        requestMsg.addBodyParameter("reblog_key", reblogIdParam);
+
+        //sign the http request message for OAuth 1.0a
+        requestMsg = TumblrUtils.signOAuthRequestGeneric(requestMsg, consumerKey, consumerSecret,
+                                                         accessToken, tokenSecret);
+
+        Response response = requestMsg.send();
+
+        if (log.isDebugEnabled()) {
+            log.debug("REQUEST TO TUMBLR : Header - " + requestMsg.getHeaders());
+            log.debug("REQUEST TO TUMBLR : Body - " + requestMsg.getBodyContents());
+            log.debug("SENDING REQUEST TO TUMBLR : " + destUrl);
+            log.debug("RECEIVED RESPONSE FROM TUMBLR : Header - " + response.getHeaders());
+            log.debug("RECEIVED RESPONSE FROM TUMBLR : Body - " + response.getBody());
+        }
+        //update message payload in message context
+        msgCtxt.setProperty("tumblr.response", response.getBody());
+
+    }
 
 }

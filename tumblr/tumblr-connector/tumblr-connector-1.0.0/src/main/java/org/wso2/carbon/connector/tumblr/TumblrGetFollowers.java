@@ -64,11 +64,11 @@ public class TumblrGetFollowers extends AbstractConnector {
 		Response response = requestMsg.send();
 		
 		if (log.isDebugEnabled()){
-			log.info("REQUEST TO TUMBLR : Header - " +requestMsg.getHeaders());
-			log.info("REQUEST TO TUMBLR : Body - " +requestMsg.getBodyContents());
-			log.info("SENDING REQUEST TO TUMBLR : " +destUrl);
-			log.info("RECEIVED RESPONSE FROM TUMBLR : Header - " +response.getHeaders());
-			log.info("RECEIVED RESPONSE FROM TUMBLR : Body - " +response.getBody());
+			log.debug("REQUEST TO TUMBLR : Header - " +requestMsg.getHeaders());
+			log.debug("REQUEST TO TUMBLR : Body - " +requestMsg.getBodyContents());
+			log.debug("SENDING REQUEST TO TUMBLR : " +destUrl);
+			log.debug("RECEIVED RESPONSE FROM TUMBLR : Header - " +response.getHeaders());
+			log.debug("RECEIVED RESPONSE FROM TUMBLR : Body - " +response.getBody());
 		}
 		//update message payload in message context
 		msgCtxt.setProperty("tumblr.response", response.getBody());	
