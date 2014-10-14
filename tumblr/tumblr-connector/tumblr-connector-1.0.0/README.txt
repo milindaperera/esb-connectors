@@ -31,38 +31,38 @@ STEPS:
 3.	Update the Tumblr properties file at location "{TUMBLR_CONNECTOR_HOME}/tumblr-connector/tumblr-connector-1.0.0
 	/src/test/resources/artifacts/ESB/connector/config"
 	
-		i	blogHostUrl - Name of the blog created in step 2.1
-		ii	consumerKey - Consumer key retrieved in step 2.2
-		iii	consumerSecret - Consumer secret retrieved in step 2.2
-		iv	accessToken - Access token retrieved in step 2.3
-		v	tokenSecret - Access token secret retrieved in step 2.3
-		vi	reblogKey - reblog key of your favourite blog post
-		
-				Retrieving reblog key - 
-					1. retrieve from url of the reblog icon of the post
-                     eg : https://www.tumblr.com/reblog/91171443335/Wuty3iOW?redirect_to=%2Fdashboard%2F2%2F91230209122
-                                                                   ===========
-						 		reblog key is - Wuty3iOW
-		
-  					2. use api console https://api.tumblr.com/console/calls/blog/posts
-  					
-  					
-  		vii reblogPostId - post id of the post you selected above  
-  		
-  				Retrieving reblog key - 
-					1. retrieve from url of the reblog icon of the post
-                    eg : https://www.tumblr.com/reblog/91171443335/Wuty3iOW?redirect_to=%2Fdashboard%2F2%2F91230209122
-                                                       ===========
-						 		post id is - 91171443335
-		
-  					2. use api console https://api.tumblr.com/console/calls/blog/posts
-  					
-  		viii directLikeReblogKey - reblog key of a post	to test like operation
-  		ix   directLikePostId - post id of the post selected above in (viii)
-  		x    esbLikeReblogKey - reblog key of another post	to test like operation
-  		xi   esbLikePostId - post id of the post selected above in (x)
-  		xii  followBlogUrl - url of your favourite blog
-  		xiii postTag - a post tag to search
+	i	blogHostUrl - Name of the blog created in step 2.1
+	ii	consumerKey - Consumer key retrieved in step 2.2
+	iii	consumerSecret - Consumer secret retrieved in step 2.2
+	iv	accessToken - Access token retrieved in step 2.3
+	v	tokenSecret - Access token secret retrieved in step 2.3
+	vi	reblogKey - reblog key of your favourite blog post
+	
+			Retrieving reblog key - 
+				1. retrieve from url of the reblog icon of the post
+             eg : https://www.tumblr.com/reblog/91171443335/Wuty3iOW?redirect_to=%2Fdashboard%2F2%2F91230209122
+                                                           ===========
+					 		reblog key is - Wuty3iOW
+	
+  				2. use api console https://api.tumblr.com/console/calls/blog/posts
+  				
+  				
+  	vii reblogPostId - post id of the post you selected above  
+  	
+  			Retrieving reblog key - 
+				1. retrieve from url of the reblog icon of the post
+            eg : https://www.tumblr.com/reblog/91171443335/Wuty3iOW?redirect_to=%2Fdashboard%2F2%2F91230209122
+                                               ===========
+					 		post id is - 91171443335
+	
+  				2. use api console https://api.tumblr.com/console/calls/blog/posts
+  				
+  	viii directLikeReblogKey - reblog key of a post	to test like operation
+  	ix   directLikePostId - post id of the post selected above in (viii)
+  	x    esbLikeReblogKey - reblog key of another post	to test like operation
+  	xi   esbLikePostId - post id of the post selected above in (x)
+  	xii  followBlogUrl - url of your favourite blog
+  	xiii postTag - a post tag to search
   		
 4.	Navigate to "{TUMBLR_CONNECTOR_HOME}/tumblr-connector/tumblr-connector-1.0.0/" and run the following command.
       				$ mvn clean install -Dmaven.test.skip=true
