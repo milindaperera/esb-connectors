@@ -45,15 +45,12 @@ public class TumblrGetFollowers extends AbstractConnector {
 		//new OAuth request message
 		OAuthRequest requestMsg = new OAuthRequest(Verb.GET, destUrl);
 		
-		//update content type
-		//requestMsg.addHeader("Content-Type", "application/x-www-form-urlencoded");
-		
 		//setting query parameters in the http message body
 		if (limitParam != null && limitParam.isEmpty() == false){
-			requestMsg.addQuerystringParameter("limit", limitParam);
+			requestMsg.addQuerystringParameter(TumblrConstants.TUMBLR_REQUEST_PARAM_LIMIT, limitParam);
 		}
 		if (offsetParam != null && offsetParam.isEmpty() == false){
-			requestMsg.addQuerystringParameter("offset", offsetParam);
+			requestMsg.addQuerystringParameter(TumblrConstants.TUMBLR_REQUEST_PARAM_OFFSET, offsetParam);
 		}
 		
 		

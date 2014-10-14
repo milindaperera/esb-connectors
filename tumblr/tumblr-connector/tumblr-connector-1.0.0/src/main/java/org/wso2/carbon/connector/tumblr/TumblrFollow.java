@@ -18,6 +18,7 @@
 
 package org.wso2.carbon.connector.tumblr;
 
+import org.apache.axis2.transport.http.HTTPConstants;
 import org.apache.synapse.MessageContext;
 import org.scribe.model.OAuthRequest;
 import org.scribe.model.Response;
@@ -43,10 +44,10 @@ public class TumblrFollow extends AbstractConnector {
         OAuthRequest requestMsg = new OAuthRequest(Verb.POST, destUrl);
 
         //update content type
-        requestMsg.addHeader("Content-Type", "application/x-www-form-urlencoded");
+        requestMsg.addHeader(HTTPConstants.HEADER_CONTENT_TYPE, HTTPConstants.MEDIA_TYPE_X_WWW_FORM);
 
         //setting query parameters in the http message body
-        requestMsg.addBodyParameter("url", urlParam);
+        requestMsg.addBodyParameter(TumblrConstants.TUMBLR_REQUEST_PARAM_URL, urlParam);
 
         //sign the http request message for OAuth 1.0a
         requestMsg = TumblrUtils.signOAuthRequestGeneric(requestMsg, consumerKey, consumerSecret,

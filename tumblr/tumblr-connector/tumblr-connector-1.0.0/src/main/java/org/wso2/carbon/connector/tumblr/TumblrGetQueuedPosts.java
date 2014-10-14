@@ -52,13 +52,13 @@ public class TumblrGetQueuedPosts extends AbstractConnector {
 
         //setting query parameters in the http message body
         if (limitParam != null && limitParam.isEmpty() == false) {
-            requestMsg.addQuerystringParameter("limit", limitParam);
+            requestMsg.addQuerystringParameter(TumblrConstants.TUMBLR_REQUEST_PARAM_LIMIT, limitParam);
         }
         if (offsetParam != null && offsetParam.isEmpty() == false) {
-            requestMsg.addQuerystringParameter("offset", offsetParam);
+            requestMsg.addQuerystringParameter(TumblrConstants.TUMBLR_REQUEST_PARAM_OFFSET, offsetParam);
         }
         if (filterParam != null && filterParam.isEmpty() == false) {
-            requestMsg.addQuerystringParameter("filter", filterParam);
+            requestMsg.addQuerystringParameter(TumblrConstants.TUMBLR_REQUEST_PARAM_FILTER, filterParam);
         }
 
 

@@ -49,11 +49,11 @@ public class TumblrGetDrafts extends AbstractConnector {
 
         //setting query parameters in the http message body
         if (beforeIdParam != null && beforeIdParam.isEmpty() == false) {
-            requestMsg.addQuerystringParameter("before_id", beforeIdParam);
+            requestMsg.addQuerystringParameter(TumblrConstants.TUMBLR_REQUEST_PARAM_BEFOREID, beforeIdParam);
         }
 
         if (filterParam != null && filterParam.isEmpty() == false) {
-            requestMsg.addQuerystringParameter("filter", filterParam);
+            requestMsg.addQuerystringParameter(TumblrConstants.TUMBLR_REQUEST_PARAM_FILTER, filterParam);
         }
 
         //sign the http request message for OAuth 1.0a

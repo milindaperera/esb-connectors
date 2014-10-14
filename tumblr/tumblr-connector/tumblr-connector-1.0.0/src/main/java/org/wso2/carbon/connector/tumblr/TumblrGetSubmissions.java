@@ -47,11 +47,11 @@ public class TumblrGetSubmissions extends AbstractConnector {
 
         //setting query parameters in the http message body
         if (offsetParam != null && offsetParam.isEmpty() == false) {
-            requestMsg.addQuerystringParameter("offset", offsetParam);
+            requestMsg.addQuerystringParameter(TumblrConstants.TUMBLR_REQUEST_PARAM_OFFSET, offsetParam);
         }
 
         if (filterParam != null && filterParam.isEmpty() == false) {
-            requestMsg.addQuerystringParameter("filter", filterParam);
+            requestMsg.addQuerystringParameter(TumblrConstants.TUMBLR_REQUEST_PARAM_FILTER, filterParam);
         }
 
         //sign the http request message for OAuth 1.0a

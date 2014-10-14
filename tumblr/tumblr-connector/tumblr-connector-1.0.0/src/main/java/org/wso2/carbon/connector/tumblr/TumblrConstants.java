@@ -80,4 +80,33 @@ public class TumblrConstants {
 
     public static final String TUMBLR_PARAMETER_URL = "tumblr.param.url";
 
+    //Constants related to tumblr API requests
+    public static final String TUMBLR_REQUEST_PARAM_TYPE = "type";
+    public static final String TUMBLR_REQUEST_PARAM_STATE = "state";
+    public static final String TUMBLR_REQUEST_PARAM_TAGS = "tags";
+    public static final String TUMBLR_REQUEST_PARAM_TWEET = "tweet";
+    public static final String TUMBLR_REQUEST_PARAM_FORMAT = "format";
+    public static final String TUMBLR_REQUEST_PARAM_SLUG = "slug";
+    public static final String TUMBLR_REQUEST_PARAM_TITLE = "title";
+    public static final String TUMBLR_REQUEST_PARAM_BODY = "body";
+    public static final String TUMBLR_REQUEST_PARAM_QUOTE = "quote";
+    public static final String TUMBLR_REQUEST_PARAM_SOURCE = "source";
+    public static final String TUMBLR_REQUEST_PARAM_URL = "url";
+    public static final String TUMBLR_REQUEST_PARAM_DESCRIPTION = "description";
+    public static final String TUMBLR_REQUEST_PARAM_CONVERSATION = "conversation";
+    public static final String TUMBLR_REQUEST_PARAM_CAPTION = "caption";
+    public static final String TUMBLR_REQUEST_PARAM_EXTURL = "external_url";
+    public static final String TUMBLR_REQUEST_PARAM_EMBED = "embed";
+    public static final String TUMBLR_REQUEST_PARAM_ID = "id";
+    public static final String TUMBLR_REQUEST_PARAM_BEFOREID = "before_id";
+    public static final String TUMBLR_REQUEST_PARAM_FILTER = "filter";
+    public static final String TUMBLR_REQUEST_PARAM_LIMIT = "limit";
+    public static final String TUMBLR_REQUEST_PARAM_OFFSET = "offset";
+    public static final String TUMBLR_REQUEST_PARAM_SINCE_ID = "since_id";
+    public static final String TUMBLR_REQUEST_PARAM_REBLOG_INFO = "reblog_info";
+    public static final String TUMBLR_REQUEST_PARAM_NOTES_INFO = "notes_info";
+    public static final String TUMBLR_REQUEST_PARAM_REBLOG_KEY = "reblog_key";
+    public static final String TUMBLR_REQUEST_PARAM_COMMENT = "comment";
+    public static final String TUMBLR_REQUEST_PARAM_ = "";
+
 }

@@ -50,26 +50,26 @@ public class TumblrGetUserDashboard extends AbstractConnector {
 
         //setting query parameters in the http message body
         if (limitParam != null && limitParam.isEmpty() == false) {
-            requestMsg.addQuerystringParameter("limit", limitParam);
+            requestMsg.addQuerystringParameter(TumblrConstants.TUMBLR_REQUEST_PARAM_LIMIT, limitParam);
         }
         if (offsetParam != null && offsetParam.isEmpty() == false) {
-            requestMsg.addQuerystringParameter("offset", offsetParam);
+            requestMsg.addQuerystringParameter(TumblrConstants.TUMBLR_REQUEST_PARAM_OFFSET, offsetParam);
         }
 
         if (typeParam != null && typeParam.isEmpty() == false) {
-            requestMsg.addQuerystringParameter("type", typeParam);
+            requestMsg.addQuerystringParameter(TumblrConstants.TUMBLR_REQUEST_PARAM_TYPE, typeParam);
         }
 
         if (sinceIdParam != null && sinceIdParam.isEmpty() == false) {
-            requestMsg.addQuerystringParameter("since_id", sinceIdParam);
+            requestMsg.addQuerystringParameter(TumblrConstants.TUMBLR_REQUEST_PARAM_SINCE_ID, sinceIdParam);
         }
 
         if (needReblogInfoParam != null && needNoteInfoParam.isEmpty() == false) {
-            requestMsg.addQuerystringParameter("reblog_info", needReblogInfoParam);
+            requestMsg.addQuerystringParameter(TumblrConstants.TUMBLR_REQUEST_PARAM_REBLOG_INFO, needReblogInfoParam);
         }
 
         if (needNoteInfoParam != null && needNoteInfoParam.isEmpty() == false) {
-            requestMsg.addQuerystringParameter("notes_info", needNoteInfoParam);
+            requestMsg.addQuerystringParameter(TumblrConstants.TUMBLR_REQUEST_PARAM_NOTES_INFO, needNoteInfoParam);
         }
 
 
