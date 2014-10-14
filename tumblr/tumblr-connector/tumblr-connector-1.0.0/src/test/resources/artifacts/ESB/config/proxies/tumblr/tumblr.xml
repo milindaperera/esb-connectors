@@ -34,35 +34,6 @@
             <property name="request.tokenSecret" expression="json-eval($.json_request.tokenSecret)"/>
             <property name="request.baseHostUrl" expression="json-eval($.json_request.baseHostUrl)"/>
             
-            <property name="request.avatarSize" expression="json-eval($.json_request.size)"/>
-            <property name="request.reblog_info" expression="json-eval($.json_request.reblog_info)"/>
-            <property name="request.notes_info" expression="json-eval($.json_request.notes_info)"/>
-            <property name="request.filter" expression="json-eval($.json_request.filter)"/>
-            
-            <property name="request.beforeId" expression="json-eval($.json_request.before_id)"/>
-            
-            <property name="request.state" expression="json-eval($.json_request.state)"/>
-            <property name="request.tweet" expression="json-eval($.json_request.tweet)"/>
-            <property name="request.format" expression="json-eval($.json_request.format)"/>
-            <property name="request.slug" expression="json-eval($.json_request.slug)"/>
-            
-            <property name="request.postType" expression="json-eval($.json_request.postType)"/>
-            <property name="request.postBody" expression="json-eval($.json_request.postBody)"/>
-            
-            <property name="request.limit" expression="json-eval($.json_request.limit)"/>
-            <property name="request.offset" expression="json-eval($.json_request.offset)"/>
-            
-            <property name="request.postId" expression="json-eval($.json_request.postId)"/>
-            <property name="request.reblogKey" expression="json-eval($.json_request.reblogKey)"/>
-            <property name="request.postComment" expression="json-eval($.json_request.postComment)"/>
-            
-            <property name="request.since_id" expression="json-eval($.json_request.since_id)"/>
-            
-            <property name="request.followBlog" expression="json-eval($.json_request.followBlog)"/>
-            
-            <property name="request.tag" expression="json-eval($.json_request.postTag)"/>
-            <property name="request.beforeTime" expression="json-eval($.json_request.before)"/>
-            
             <tumblr.init>
                <oauthConsumerKey>{$ctx:request.consumerKey}</oauthConsumerKey>
                <oauthConsumerSecret>{$ctx:request.consumerSecret}</oauthConsumerSecret>
@@ -77,6 +48,8 @@
             	</case>
             	
             	<case regex="getFollowers">
+                    <property name="request.offset" expression="json-eval($.json_request.offset)"/>
+                    <property name="request.limit" expression="json-eval($.json_request.limit)"/>
             		<tumblr.getFollowers>
 						<offset>{$ctx:request.offset}</offset>
 						<limit>{$ctx:request.limit}</limit>
@@ -84,6 +57,13 @@
             	</case>
             	
             	<case regex="createPost">
+                    <property name="request.state" expression="json-eval($.json_request.state)"/>
+                    <property name="request.tag" expression="json-eval($.json_request.postTag)"/>
+                    <property name="request.tweet" expression="json-eval($.json_request.tweet)"/>
+                    <property name="request.format" expression="json-eval($.json_request.format)"/>
+                    <property name="request.slug" expression="json-eval($.json_request.slug)"/>
+                    <property name="request.postType" expression="json-eval($.json_request.postType)"/>
+                    <property name="request.postBody" expression="json-eval($.json_request.postBody)"/>
             		<tumblr.createPost>
             		 <postType>text</postType>
 						<postState>{$ctx:request.state}</postState>
@@ -98,6 +78,14 @@
             	</case>
             	
             	<case regex="editPost">
+                    <property name="request.state" expression="json-eval($.json_request.state)"/>
+                    <property name="request.tag" expression="json-eval($.json_request.postTag)"/>
+                    <property name="request.tweet" expression="json-eval($.json_request.tweet)"/>
+                    <property name="request.format" expression="json-eval($.json_request.format)"/>
+                    <property name="request.slug" expression="json-eval($.json_request.slug)"/>
+                    <property name="request.postType" expression="json-eval($.json_request.postType)"/>
+                    <property name="request.postBody" expression="json-eval($.json_request.postBody)"/>
+                    <property name="request.postId" expression="json-eval($.json_request.postId)"/>
             		<tumblr.editPost>
 						<postId>{$ctx:request.postId}</postId>
 						<postType>{$ctx:request.postType}</postType>
@@ -112,6 +100,15 @@
             	</case>
             	
             	<case regex="reblogPost">
+                    <property name="request.state" expression="json-eval($.json_request.state)"/>
+                    <property name="request.tag" expression="json-eval($.json_request.postTag)"/>
+                    <property name="request.tweet" expression="json-eval($.json_request.tweet)"/>
+                    <property name="request.format" expression="json-eval($.json_request.format)"/>
+                    <property name="request.slug" expression="json-eval($.json_request.slug)"/>
+                    <property name="request.postType" expression="json-eval($.json_request.postType)"/>
+                    <property name="request.postId" expression="json-eval($.json_request.postId)"/>
+                    <property name="request.reblogKey" expression="json-eval($.json_request.reblogKey)"/>
+                    <property name="request.postComment" expression="json-eval($.json_request.postComment)"/>
             		<tumblr.reblogPost>
 						<postId>{$ctx:request.postId}</postId>
 						<postReblogKey>{$ctx:request.reblogKey}</postReblogKey>
@@ -127,6 +124,8 @@
             	</case>
             	
             	<case regex="getBlogLikes">
+                    <property name="request.limit" expression="json-eval($.json_request.limit)"/>
+                    <property name="request.offset" expression="json-eval($.json_request.offset)"/>
             		<tumblr.getBlogLikes>
 						<baseHostUrl>{$ctx:request.baseHostUrl}</baseHostUrl>
 						<limit>{$ctx:request.limit}</limit>
@@ -135,12 +134,21 @@
             	</case>
             	
             	<case regex="getAvatar">
+                    <property name="request.avatarSize" expression="json-eval($.json_request.size)"/>
             		<tumblr.getAvatar>
 						<size>{$ctx:request.avatarSize}</size>
 					</tumblr.getAvatar>
             	</case>
             	
             	<case regex="getPosts">
+                    <property name="request.limit" expression="json-eval($.json_request.limit)"/>
+                    <property name="request.offset" expression="json-eval($.json_request.offset)"/>
+                    <property name="request.tag" expression="json-eval($.json_request.postTag)"/>
+                    <property name="request.postType" expression="json-eval($.json_request.postType)"/>
+                    <property name="request.postId" expression="json-eval($.json_request.postId)"/>
+                    <property name="request.filter" expression="json-eval($.json_request.filter)"/>
+                    <property name="request.notes_info" expression="json-eval($.json_request.notes_info)"/>
+                    <property name="request.reblog_info" expression="json-eval($.json_request.reblog_info)"/>
             		<tumblr.getPosts>
 						<baseHostUrl>{$ctx:request.baseHostUrl}</baseHostUrl>
 						<type>{$ctx:request.postType}</type>
@@ -155,6 +163,9 @@
             	</case>
             	
             	<case regex="getQueuedPosts">
+                    <property name="request.limit" expression="json-eval($.json_request.limit)"/>
+                    <property name="request.offset" expression="json-eval($.json_request.offset)"/>
+                    <property name="request.filter" expression="json-eval($.json_request.filter)"/>
             		<tumblr.getQueuedPosts>
 						<offset>{$ctx:request.offset}</offset>
 						<limit>{$ctx:request.limit}</limit>
@@ -163,6 +174,8 @@
             	</case>
             	
             	<case regex="getDraftedPosts">
+                    <property name="request.beforeId" expression="json-eval($.json_request.before_id)"/>
+                    <property name="request.filter" expression="json-eval($.json_request.filter)"/>
             		<tumblr.getDraftedPosts>
 						<beforeId>{$ctx:request.beforeId}</beforeId>
 						<filter>{$ctx:request.filter}</filter>
@@ -170,6 +183,8 @@
             	</case>
             	
             	<case regex="getSubmissions">
+                    <property name="request.offset" expression="json-eval($.json_request.offset)"/>
+                    <property name="request.filter" expression="json-eval($.json_request.filter)"/>
 					<tumblr.getSubmissions>
 						<offset>{$ctx:request.offset}</offset>
 						<filter>{$ctx:request.filter}</filter>
@@ -177,6 +192,7 @@
             	</case>
             	
             	<case regex="deletePost">
+                    <property name="request.postId" expression="json-eval($.json_request.postId)"/>
             		<tumblr.deletePost>
 						<postId>{$ctx:request.postId}</postId>
 					</tumblr.deletePost>
@@ -187,6 +203,12 @@
             	</case>
             	
             	<case regex="getUserDashboard">
+                    <property name="request.limit" expression="json-eval($.json_request.limit)"/>
+                    <property name="request.offset" expression="json-eval($.json_request.offset)"/>
+                    <property name="request.postType" expression="json-eval($.json_request.postType)"/>
+                    <property name="request.since_id" expression="json-eval($.json_request.since_id)"/>
+                    <property name="request.notes_info" expression="json-eval($.json_request.notes_info)"/>
+                    <property name="request.reblog_info" expression="json-eval($.json_request.reblog_info)"/>
             		<tumblr.getUserDashBoard>
 						<offset>{$ctx:request.offset}</offset>
 						<limit>{$ctx:request.limit}</limit>
@@ -198,6 +220,8 @@
             	</case>
             	
             	<case regex="getLikes">
+                    <property name="request.limit" expression="json-eval($.json_request.limit)"/>
+                    <property name="request.offset" expression="json-eval($.json_request.offset)"/>
             		<tumblr.getLikes>
 						<offset>{$ctx:request.offset}</offset>
 						<limit>{$ctx:request.limit}</limit>
@@ -205,6 +229,8 @@
             	</case>
             	
             	<case regex="getFollowing">
+                    <property name="request.limit" expression="json-eval($.json_request.limit)"/>
+                    <property name="request.offset" expression="json-eval($.json_request.offset)"/>
             		<tumblr.getFollowing>
 						<offset>{$ctx:request.offset}</offset>
 						<limit>{$ctx:request.limit}</limit>
@@ -212,16 +238,20 @@
             	</case>
             	
             	<case regex="follow">
+                    <property name="request.followBlog" expression="json-eval($.json_request.followBlog)"/>
             		<tumblr.Follow>
 						<url>{$ctx:request.followBlog}</url>
 					</tumblr.Follow>
             	</case>
             	<case regex="unFollow">
+                    <property name="request.followBlog" expression="json-eval($.json_request.followBlog)"/>
             		<tumblr.unFollow>
 						<url>{$ctx:request.followBlog}</url>
 					</tumblr.unFollow>
             	</case>
             	<case regex="like">
+                    <property name="request.postId" expression="json-eval($.json_request.postId)"/>
+                    <property name="request.reblogKey" expression="json-eval($.json_request.reblogKey)"/>
             		<tumblr.like>
 						<postId>{$ctx:request.postId}</postId>
 						<reblogKey>{$ctx:request.reblogKey}</reblogKey>
@@ -229,12 +259,18 @@
             	</case>
             	
             	<case regex="unLike">
+                    <property name="request.postId" expression="json-eval($.json_request.postId)"/>
+                    <property name="request.reblogKey" expression="json-eval($.json_request.reblogKey)"/>
             		<tumblr.unlike>
 						<postId>{$ctx:request.postId}</postId>
 						<reblogKey>{$ctx:request.reblogKey}</reblogKey>
 					</tumblr.unlike>
             	</case>
             	<case regex="getTaggedPosts">
+                    <property name="request.limit" expression="json-eval($.json_request.limit)"/>
+                    <property name="request.offset" expression="json-eval($.json_request.offset)"/>
+                    <property name="request.tag" expression="json-eval($.json_request.postTag)"/>
+                    <property name="request.beforeTime" expression="json-eval($.json_request.before)"/>
             		<tumblr.getTaggedPosts>
 						<tag>{$ctx:request.tag}</tag>
 						<before>{$ctx:request.beforeTime}</before>

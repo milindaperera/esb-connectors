@@ -83,12 +83,12 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
 
     /**
      * Positive test case for getBlogInfo
-     * @throws org.json.JSONException Thrown if exception occurred during JSONObject creation
-     * @throws org.json.JSONException Thrown sending json request to ESB failed by sendJsonRestRequest
+     * @throws org.json.JSONException Thrown if exception occurred during JSONObject creation or sending json request
+     * to ESB failed by sendJsonRestRequest
      * @throws java.io.IOException Thrown sending json request to ESB failed by sendJsonRestRequest
      */
     @Test(priority = 1, groups = {"wso2.esb"}, description = "tumblr {getBlogInfo} integration positive test")
-    public void testTumblrGetBlogInfo() throws JSONException, Exception {
+    public void testTumblrGetBlogInfo() throws JSONException, IOException {
 
         String consumerKey = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_KEY);
         log.info("consumerKey : " + consumerKey);
@@ -129,7 +129,7 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
      * @throws java.io.IOException Thrown sending json request to ESB failed by sendJsonRestRequest
      */
     @Test(priority = 1, groups = {"wso2.esb"}, description = "tumblr {getBlogLikes} integration positive test")
-    public void testTumblrGetBlogLikes() throws JSONException, Exception {
+    public void testTumblrGetBlogLikes() throws JSONException, IOException {
 
         String consumerKey = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_KEY);
         log.info("consumerKey : " + consumerKey);
@@ -153,7 +153,7 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
 
         RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURL("tumblr"),
                                                                        "POST", esbRequestHeadersMap, "getBlogLikes.json");
-;
+
         log.info("Connector response : " + esbRestResponse.getBody().get("meta").toString());
 
         Assert.assertEquals(esbRestResponse.getBody().get("meta").toString(), directResponseJObj.get("meta").toString());
@@ -165,10 +165,9 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
      * Positive integration test case for getAvatar
      *
      * @throws JSONException
-     * @throws IOException
      */
     @Test(priority = 1, groups = {"wso2.esb"}, description = "tumblr {getAvatar} integration positive test")
-    public void testTumblrGetAvatar() throws JSONException, Exception {
+    public void testTumblrGetAvatar() throws JSONException {
 
         //Get Direct response from tumblr
         String requestUrl = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_BASEAPIURL);
@@ -340,12 +339,10 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
         log.info("Connector Response:" + esbRestResponse.getBody().get("meta").toString());
         log.debug("Connector Response:" + esbRestResponse.getBody().get("response").toString());
 
+        //check response status
         Assert.assertEquals(esbRestResponse.getBody().get("meta").toString(),
                             directResponse.get("meta").toString());
-
-        Assert.assertEquals(esbRestResponse.getBody().get("response").toString(),
-                            directResponse.get("response").toString());
-
+        //response posts are not compared due to tumblr may returned number of posts may vary
     }
 
 
@@ -725,9 +722,7 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
         log.info("tokenSecret : " + tokenSecret);
 
         //Get Direct response from tumblr
-        String requestUrl = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_BASEAPIURL);
-
-        requestUrl = "http://api.tumblr.com/v2/user/info";
+        String requestUrl = "http://api.tumblr.com/v2/user/info";
         log.info("requestUrl : " + requestUrl);
 
         JSONObject directResponse = ConnectorIntegrationUtil.DirectHttpAuthGET(requestUrl, consumerKey,
@@ -771,9 +766,7 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
         log.info("tokenSecret : " + tokenSecret);
 
         //Get Direct response from tumblr
-        String requestUrl = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_BASEAPIURL);
-
-        requestUrl = "http://api.tumblr.com/v2/user/dashboard";
+        String requestUrl = "http://api.tumblr.com/v2/user/dashboard";
         log.info("requestUrl : " + requestUrl);
 
         JSONObject directResponse = ConnectorIntegrationUtil.DirectHttpAuthGET(requestUrl, consumerKey,
@@ -790,6 +783,7 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
 
         log.info("ESB:" + esbRestResponse.getBody().get("meta").toString());
 
+        //check response status
         Assert.assertEquals(esbRestResponse.getBody().get("meta").toString(),
                             directResponse.get("meta").toString());
         Assert.assertEquals(esbRestResponse.getBody().get("response").toString(),
@@ -818,9 +812,7 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
         log.info("tokenSecret : " + tokenSecret);
 
         //Get Direct response from tumblr
-        String requestUrl = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_BASEAPIURL);
-
-        requestUrl = "http://api.tumblr.com/v2/user/likes";
+        String requestUrl = "http://api.tumblr.com/v2/user/likes";
         log.info("requestUrl : " + requestUrl);
 
         JSONObject directResponse = ConnectorIntegrationUtil.DirectHttpAuthGET(requestUrl, consumerKey,
@@ -866,9 +858,7 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
         log.info("tokenSecret : " + tokenSecret);
 
         //Get Direct response from tumblr
-        String requestUrl = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_BASEAPIURL);
-
-        requestUrl = "http://api.tumblr.com/v2/user/following";
+        String requestUrl = "http://api.tumblr.com/v2/user/following";
         log.info("requestUrl : " + requestUrl);
 
         JSONObject directResponse = ConnectorIntegrationUtil.DirectHttpAuthGET(requestUrl, consumerKey,
@@ -1127,13 +1117,11 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
         RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(getProxyServiceURL("tumblr"),
                                                                        "POST", esbRequestHeadersMap, "getTaggedPosts.json");
         log.info("ESB:" + esbRestResponse.getBody().get("meta").toString());
+        //response not compared since tumblr may return different tagged post
         log.debug("ESB:" + esbRestResponse.getBody().get("response").toString());
-
+        //check response status
         Assert.assertEquals(esbRestResponse.getBody().get("meta").toString(),
                             directResponseJObj.get("meta").toString());
-
-        Assert.assertEquals(esbRestResponse.getBody().get("response").toString(),
-                            directResponseJObj.get("response").toString());
 
     }
 
@@ -1150,16 +1138,15 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
      * With empty target url
      */
     @Test(priority = 5, groups = {"wso2.esb"}, description = "tumblr {getBlogInfo} integration negative test")
-    public void NegativeTestTumblrGetBlogInfo() throws JSONException, Exception {
+    public void NegativeTestTumblrGetBlogInfo() throws JSONException, IOException {
 
         String consumerKey = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_KEY);
         log.info("consumerKey : " + consumerKey);
 
         //Get Direct response from tumblr
         String requestUrl = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_BASEAPIURL);
-        String targetBlogUrl = "";
 
-        requestUrl = requestUrl + "/" + targetBlogUrl + "/info?api_key=" + consumerKey;
+        requestUrl = requestUrl + "//info?api_key=" + consumerKey;
         log.info("requestUrl : " + requestUrl);
 
         String directResponse = ConnectorIntegrationUtil.DirectHttpGET(requestUrl);
@@ -1189,7 +1176,7 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
      * @throws IOException
      */
     @Test(priority = 5, groups = {"wso2.esb"}, description = "tumblr {getBlogLikes} integration negative test")
-    public void NegativeTestTumblrGetBlogLikes() throws JSONException, Exception {
+    public void NegativeTestTumblrGetBlogLikes() throws JSONException, IOException {
 
         String consumerKey = "wrong" + connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_KEY);
         log.info("consumerKey : " + consumerKey);
@@ -1226,7 +1213,7 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
      * @throws IOException
      */
     @Test(priority = 5, groups = {"wso2.esb"}, description = "tumblr {getAvatar} integration negative test")
-    public void NegativeTestTumblrGetAvatar() throws JSONException, Exception {
+    public void NegativeTestTumblrGetAvatar() throws JSONException, IOException {
 
         //Get Direct response from tumblr
         String requestUrl = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_BASEAPIURL);
@@ -1718,9 +1705,7 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
         log.info("tokenSecret : " + tokenSecret);
 
         //Get Direct response from tumblr
-        String requestUrl = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_BASEAPIURL);
-
-        requestUrl = "http://api.tumblr.com/v2/user/info";
+        String requestUrl = "http://api.tumblr.com/v2/user/info";
         log.info("requestUrl : " + requestUrl);
 
         JSONObject directResponse = ConnectorIntegrationUtil.DirectHttpAuthGET(requestUrl, consumerKey,
@@ -1765,9 +1750,7 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
         log.info("tokenSecret : " + tokenSecret);
 
         //Get Direct response from tumblr
-        String requestUrl = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_BASEAPIURL);
-
-        requestUrl = "http://api.tumblr.com/v2/user/dashboard";
+        String requestUrl = "http://api.tumblr.com/v2/user/dashboard";
         log.info("requestUrl : " + requestUrl);
 
         JSONObject directResponse = ConnectorIntegrationUtil.DirectHttpAuthGET(requestUrl, consumerKey,
@@ -1812,9 +1795,7 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
         log.info("tokenSecret : " + tokenSecret);
 
         //Get Direct response from tumblr
-        String requestUrl = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_BASEAPIURL);
-
-        requestUrl = "http://api.tumblr.com/v2/user/likes";
+        String requestUrl = "http://api.tumblr.com/v2/user/likes";
         log.info("requestUrl : " + requestUrl);
 
         JSONObject directResponse = ConnectorIntegrationUtil.DirectHttpAuthGET(requestUrl, consumerKey,
@@ -1860,9 +1841,7 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
         log.info("tokenSecret : " + tokenSecret);
 
         //Get Direct response from tumblr
-        String requestUrl = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_BASEAPIURL);
-
-        requestUrl = "http://api.tumblr.com/v2/user/following";
+        String requestUrl = "http://api.tumblr.com/v2/user/following";
         log.info("requestUrl : " + requestUrl);
 
         JSONObject directResponse = ConnectorIntegrationUtil.DirectHttpAuthGET(requestUrl, consumerKey,
@@ -2126,9 +2105,7 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
 
         Assert.assertEquals(esbRestResponse.getBody().get("meta").toString(),
                             directResponseJObj.get("meta").toString());
-
-        Assert.assertEquals(esbRestResponse.getBody().get("response").toString(),
-                            directResponseJObj.get("response").toString());
+        //response not compared since tumblr may return different tagged post
 
     }
 
@@ -2145,10 +2122,9 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
      * Requesting image with size 512
      *
      * @throws JSONException
-     * @throws IOException
      */
     @Test(priority = 4, groups = {"wso2.esb"}, description = "tumblr {getAvatar} integration optional positive test")
-    public void optionalTestTumblrGetAvatar() throws JSONException, Exception {
+    public void optionalTestTumblrGetAvatar() throws JSONException {
 
         //Get Direct response from tumblr
         String requestUrl = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_BASEAPIURL);
@@ -2180,7 +2156,7 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
      * @throws IOException
      */
     @Test(priority = 4, groups = {"wso2.esb"}, description = "tumblr {getBlogLikes} integration positive test")
-    public void optionalTestTumblrGetBlogLikes() throws JSONException, Exception {
+    public void optionalTestTumblrGetBlogLikes() throws JSONException, IOException {
 
         String consumerKey = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_CONSUMER_KEY);
         log.info("consumerKey : " + consumerKey);
@@ -2366,9 +2342,7 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
 
         Assert.assertEquals(esbRestResponse.getBody().get("meta").toString(),
                             directResponse.get("meta").toString());
-
-        Assert.assertEquals(esbRestResponse.getBody().get("response").toString(),
-                            directResponse.get("response").toString());
+        //response posts are not compared due to tumblr may returned number of posts may vary
 
     }
 
@@ -2726,9 +2700,7 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
         log.info("tokenSecret : " + tokenSecret);
 
         //Get Direct response from tumblr
-        String requestUrl = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_BASEAPIURL);
-
-        requestUrl = "http://api.tumblr.com/v2/user/dashboard";
+        String requestUrl = "http://api.tumblr.com/v2/user/dashboard";
         log.info("requestUrl : " + requestUrl);
 
         HashMap<String, String> params = new HashMap<String, String>();
@@ -2781,9 +2753,7 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
         log.info("tokenSecret : " + tokenSecret);
 
         //Get Direct response from tumblr
-        String requestUrl = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_BASEAPIURL);
-
-        requestUrl = "http://api.tumblr.com/v2/user/likes";
+        String requestUrl = "http://api.tumblr.com/v2/user/likes";
         log.info("requestUrl : " + requestUrl);
 
         HashMap<String, String> params = new HashMap<String, String>();
@@ -2833,9 +2803,7 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
         log.info("tokenSecret : " + tokenSecret);
 
         //Get Direct response from tumblr
-        String requestUrl = connectorProperties.getProperty(TumblrTestConstants.PROPERTY_BASEAPIURL);
-
-        requestUrl = "http://api.tumblr.com/v2/user/following";
+        String requestUrl = "http://api.tumblr.com/v2/user/following";
         log.info("requestUrl : " + requestUrl);
 
         HashMap<String, String> params = new HashMap<String, String>();
@@ -2899,10 +2867,7 @@ public class TumblrConnectoreIntegrationTest extends ConnectorIntegrationTestBas
 
         Assert.assertEquals(esbRestResponse.getBody().get("meta").toString(),
                             directResponseJObj.get("meta").toString());
-
-        Assert.assertEquals(esbRestResponse.getBody().get("response").toString(),
-                            directResponseJObj.get("response").toString());
-
+        //response not compared since tumblr may return different tagged post
     }
 
 
